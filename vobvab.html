@@ -1,0 +1,869 @@
+<!-- *** Card Stunt code generator *** -->
+<!-- made in SKR School KeeLaSee Festival -->
+<!-- *** Created by lucky_user ***-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mobmab Vobvab</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Bai+Jamjuree|Sarabun&display=swap" rel="stylesheet">
+
+
+    <style>
+      body {
+        background-color: #f0f0f0;
+        font-family: 'Bai Jamjuree', sans-serif;
+        color:darkslategre y;
+      }
+      button {
+        background-color: #555555;
+        border: 2px solid #555555;
+        color: white;
+        padding: 3px 12px;
+        text-align: center;
+        font-family: 'Bai Jamjuree', sans-serif;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 2px 2px;
+        cursor: pointer;
+        transition: 0.3s
+      }
+      button:hover{
+        background-color:  #d8d8d8;
+        border: 2px solid #444444;
+        color: black;
+        
+      }
+      input[type=form] {
+        width: 100px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        padding: 4px 20px 4px 8px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+      }
+      input[type=form]:focus {
+        width: 135px;
+      }
+      #txtFile_form:focus {
+        width: 70%;
+      }
+      
+      #divCanvas2  {
+        margin-top: 15px;
+        height: 450px;
+        overflow: auto;
+      }
+      footer{
+        /*padding: 1px 15px;*/
+        /*height: 60px;*/
+        background-color:#f0f0f0 ;
+        color: #888888;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>โปรแกรมสร้างโค้ดแปรอักษร</h2>
+
+    <div>
+      จำนวนแถว : <input type="form" id= "inRows"> &nbsp&nbsp
+      จำนวนหลัก : <input type="form" id= "inColumns">&nbsp&nbsp
+      จำนวนเฟรมแปร : <input type="form" id= "inImgs"> &nbsp&nbsp
+      <button id="doneSize" onmouseup="afterDimension()" >ตกลง</button>
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+      <button id="imgNoDown" onmouseup="whenImgNoDown()" >ก่อนหน้า</button>
+      <a>ขณะนี้เฟรมที่ &nbsp</a> <a align = center id="imgNoLbl" ></a>&nbsp
+      <button id="imgNoUp" onmouseup="whenImgNoUp()" >ถัดไป</button>
+    </div>
+
+    <p align = left id="pickerConf">
+      <a>เลือกสีและข้อความบนรหัส : </a>
+      <input type="color" id="colorPick">&nbsp
+      <input type="form" id= "inLabel" >&nbsp
+      <button id="donePckConf" onmouseup="Picker.afterConf()" >ตกลง</button>
+    </p>
+    
+    <p align = center>
+      <canvas id="canvas" width="1200" height="350"
+              style="background-color : #d9d9d9; 
+                     border : 2px solid #b9b9b9;">
+      </canvas> 
+    </p>
+    
+    <a>จำนวนโค้ดที่จะแสดงใน 1 บรรทัด &nbsp </a>
+    <input type="form" id="inDplyLen">
+    &nbsp
+    <button id="genDpTb_button" onclick="genDisplayTb()">รีเฟรชโค้ด</button>
+    <a>โค้ดของแต่ละที่นั่งบนอัฒจันทร์ ในแต่ละเฟรม สามารถปรินท์ไปแปะตรงที่นั่ง</a>
+	
+    <div align = center id="divCanvas2">
+      <canvas id="canvas2" width="1200" height="1000"
+              style="background-color : #d9d9d9; 
+                     border : 2px solid #cccccc;">
+      </canvas>
+    </div>&nbsp
+      <br>
+    <a id="downloadDpTb" download="displayCode.jpg" href="" onclick="download_DpTb(this);">Save image to my computer</a>
+      <br><br>
+    <button id="save_button" onclick="saveJASON()">Save JSON Code</button> &nbsp
+    <input type="form" id="txtFile_form" width=1800 height=800> &nbsp
+    <button id="upload_button" onclick="uploadJSON()">Upload JSON Code</button>
+    
+    <p>เซฟข้อมูลการออกแบบโดยกด Save JASON แล้วก็อปโค้ดซึ่งเก็บข้อมูลของอัฒจันทร์ทั้งหมดนี้ไปเก็บไว้ เวลาจะใช้จึงค่อยก็อปมาใส่ช่องนี้อีก แล้วกด Upload <br>เนื่องจากว่าเพิ่งจะฝึกเขียน หากมีบั๊กผิดพลาดก็ขออภัยด้วยนะครับ ขอบคุณครับ</p>
+
+
+    <script>//******************************************************************//
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      //get Elements as objects
+      {
+        var inImgs = document.getElementById("inImgs");
+        var inRows = document.getElementById("inRows");
+        var inColumns = document.getElementById("inColumns");
+
+        var imgNoDown = document.getElementById("imgNoDown");
+        var imgNoLbl = document.getElementById("imgNoLbl");
+        var imgNoUp = document.getElementById("imgNoUp");
+
+        var pickerConf = document.getElementById("pickerConf");
+        pickerConf.style.display = "none"; //hide the element
+        var colorPick = document.getElementById("colorPick");
+        var inLabel = document.getElementById("inLabel");
+        
+        var inDplyLen = document.getElementById("inDplyLen");
+        var txtFile_form = document.getElementById("txtFile_form");
+      }
+      setInterval(frameUpdate, 50);
+      //var interval2 = setInterval(frameCanvas2, 60);
+      
+      function frameUpdate()
+      {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawBackground();
+        for(i=0 ; i<buttonArr[canvas.id].length ; i++)
+          buttonArr[canvas.id][i].drawButton(); 
+        //updateCanvas2();
+        
+      }     
+      //************************* class Button *************************//
+      var buttonArr = {} ;
+      class Button {
+        constructor(x1, y1, w, h, incanvas) {
+          this.stateOn = "on";
+          this.canvas = incanvas;
+          this.ctx = this.canvas.getContext("2d");
+          this.x1 = x1 ;
+          this.x2 = x1 + w ;
+          this.y1 = y1 ;
+          this.y2 = y1 + h ;
+
+          this.w = w ;
+          this.h = h ;
+
+          this.color = "#fafafa" ; //default
+          this.textColor = "#000000" ;
+          this.label = '' ;
+
+          this.onClickDo = function(){ }
+          this.onDblClickDo = function(){ }
+          this.onMoveOverDo = function(){}
+          this.isMoveOver = false;
+
+          this.drawButton();
+          this.addTo_pxMap();
+          buttonArr[this.canvas.id].push( this ); // add this obj to list for scanning
+        }
+        addTo_pxMap(){
+          if(this.stateOn == "off")
+            return false;
+          this.x2 = this.x1 + this.w ;
+          this.y2 = this.y1 + this.h ;
+          
+          for(var x=this.x1; x<this.x2; x++){
+            for(var y=this.y1; y<this.y2; y++){
+              pixelMap[this.canvas.id][x][y] = this; 
+            }
+          }
+        }
+        drawButton()
+        { 
+          if(this.stateOn == "off")
+            return false;
+
+          this.x2 = this.x1 + this.w ;
+          this.y2 = this.y1 + this.h ;
+          //ctx.strokeRect(this.x1, this.y1, this.w, this.h);
+          if(selectedPck == this){
+            this.ctx.fillStyle ="rgba(9,9,9, 0.12)";
+            this.ctx.fillRect(this.x1-4, this.y1-4, this.w+8, this.h+8);
+          }
+          this.ctx.fillStyle = this.color ;
+          this.ctx.fillRect(this.x1, this.y1, this.w, this.h);          
+
+          if(this.isMouseIn(mouseX, mouseY)){
+            this.ctx.fillStyle = "rgba(0, 0, 0, 0.1)" ;
+            this.ctx.fillRect(this.x1, this.y1, this.w, this.h);          
+          }
+
+          this.ctx.fillStyle = this.textColor;
+          this.ctx.textAlign = "center" ;
+          this.ctx.font = 0.6*this.h + "px Sarabun, sans-serif"
+          this.ctx.fillText(this.label, (this.x1 + this.x2)/2, this.y2 - 0.3*this.h, this.w);
+        }
+        isMouseIn(mouseX, mouseY) {
+          if(this.stateOn == "off")
+            return false;
+          
+          if( this.x1 <= mouseX && mouseX <= this.x2 &&
+             this.y1 <= mouseY && mouseY <= this.y2 )
+            return true;
+          else
+            return false;
+        }
+        onClick(){
+          if(this.stateOn == "off")
+            return false;
+
+          if(this.isMouseIn(event.offsetX, event.offsetY))
+            this.onClickDo();
+        }
+        onMouseMove(){
+          if(this.stateOn == "off")
+            return false;
+
+          if(this.isMouseIn(event.offsetX, event.offsetY)){
+            //this.isMoveOver = true;
+            this.onMoveOverDo()
+          }
+          //else
+            //this.isMoveOver = false;          
+        }
+        onDblClick(){
+          if(this.stateOn == "off")
+            return false;
+
+          if(this.isMouseIn(event.offsetX, event.offsetY))
+            this.onDblClickDo();
+        }
+      } // end of Button class จ้ะ !!!
+      var isMouseStillDown = false;
+      var mouseX;
+      var mouseY;
+      var pixelMap = {};
+      function getCanvasListener(hostCanvas){
+        buttonArr[hostCanvas.id] = []; //def buttonArr of a canvas as arrray
+        pixelMap[hostCanvas.id] = new2dArray(hostCanvas.width, hostCanvas.height);
+        
+        hostCanvas.addEventListener("click", function(event) {
+          mouseX = event.offsetX ;
+          mouseY = event.offsetY ;
+          if(pixelMap[hostCanvas.id][mouseX][mouseY]==undefined)
+            return;
+          pixelMap[hostCanvas.id][mouseX][mouseY].onClick(); 
+        }); 
+        hostCanvas.addEventListener("mousemove", function(event) {
+          mouseX = event.offsetX ;
+          mouseY = event.offsetY ;
+          if(pixelMap[hostCanvas.id][mouseX][mouseY]==undefined)
+            return;
+          pixelMap[hostCanvas.id][mouseX][mouseY].onMouseMove(); 
+          
+        });
+        hostCanvas.addEventListener("dblclick", function(event) {
+          mouseX = event.offsetX ;
+          mouseY = event.offsetY ;
+          if(pixelMap[hostCanvas.id][mouseX][mouseY]==undefined)
+            return;
+          pixelMap[hostCanvas.id][mouseX][mouseY].onDblClick(); 
+        });
+        //var isMouseStillDown = false;
+        hostCanvas.addEventListener("mousedown", function(event) {
+          isMouseStillDown = true;
+        });
+        hostCanvas.addEventListener("mouseup", function(event) {
+          isMouseStillDown = false;
+        });
+      }
+      getCanvasListener(canvas);
+      
+      function remapPixelMap(canvas){
+        for(var x=0; x<pixelMap[canvas.id].length; x++){
+          for(var y=0; y<pixelMap[canvas.id][x].lengtht; y++){
+            pixelMap[canvas.id][x][y] = undefined; 
+          }
+        }
+        pixelMap[canvas.id] = new2dArray(canvas.width, canvas.height);
+        
+        for(var i=0; i<buttonArr[canvas.id].length; i++){
+          buttonArr[canvas.id][i].addTo_pxMap();          
+        }
+      }
+      
+      
+      //************************* class Picker **************************//
+      var selectedPck;
+      var selectedPckIDX;
+      class Picker extends Button {
+        constructor(x1, y1, w, h, incanvas){
+          super(x1, y1, w, h, incanvas);
+          this.color = "#e3deff";
+          this.PckIDX = ''
+          this.onClickDo = function(){
+            selectedPck = this;
+            selectedPckIDX = this.PckIDX;
+          }
+
+          this.onDblClickDo = function(){
+            pickerConf.style.display = "block"; //show the element
+            colorPick.value = selectedPck.color;
+            inLabel.value = selectedPck.label;
+          }
+        }
+
+        static afterConf(){
+          pickerConf.style.display = "none"; //hide the element
+          selectedPck.color = colorPick.value;
+          selectedPck.label = inLabel.value;
+          
+          for(var i=0; i<cellList.length; i++){
+            cellList[i].getPckProp();
+          }
+        }
+      } // end of Picker class
+      inLabel.addEventListener("keyup",function(event){
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          Picker.afterConf();
+        }
+      });
+
+      //********************* class Cell **********************************//
+      var cellList = [];
+      class Cell extends Button{
+        constructor(x1, y1, w, h, incanvas) {
+          super(x1, y1, w, h, incanvas)
+          this.cellRow = '';
+          this.cellColumn = '';
+          cellList[cellList.length] = this;
+          //addEventListener("mousedown", this.onClickDo);
+          
+          this.onClickDo = function() {
+            standMem[nowImgNo][this.cellRow][this.cellColumn] = selectedPckIDX ;
+            this.getPckProp();
+            //disPlayTb[this.cellRow][this.cellColumn][nowImgNo].setColor = this.color;
+            //disPlayTb[this.cellRow][this.cellColumn][nowImgNo].setLabel = this.label;
+            
+            //this.color = cellPckList[selectedPckIDX].color;
+            //this.label = cellPckList[selectedPckIDX].label;
+          }
+          this.onMoveOverDo = function(){
+            if(isMouseStillDown)
+              this.onClickDo();
+          }
+        }
+        getPckProp(){
+          if(standMem[nowImgNo][this.cellRow][this.cellColumn] == undefined)
+            return;
+          if(cellPckList[ standMem[nowImgNo][this.cellRow][this.cellColumn] ] == undefined)
+            return;
+          this.color = cellPckList[ standMem[nowImgNo][this.cellRow][this.cellColumn] ].color;
+          this.label = cellPckList[ standMem[nowImgNo][this.cellRow][this.cellColumn] ].label;
+        }
+      }
+
+      //********************* end of classes *****************************//
+      //---------------||||||------ -_- ---------||||||-------------------//
+      
+      function new2dArray(m, n){
+        var newArr = [];
+        for(var i=0; i<m; i++){
+          newArr[i] = new Array(n);
+        }
+        return newArr;
+      }
+      
+      //******************************************************************//
+      function drawBackground(){
+        imgNoLbl.innerHTML = nowImgNo + 1;
+        
+        ctx.fillStyle = "#c0c0c0";
+        ctx.fillRect(10, 10, canvas.width-20, cellHeight+20);
+        
+        ctx.fillStyle = "black";
+        ctx.textAlign = "left";
+        ctx.font = "16px Sarabun ,sans-serif"
+        ctx.fillText("เลือกสี", 20, 30,);
+        ctx.fillText("ดับเบิลคลิก", 20, 50,);
+        
+        ctx.fillStyle = "#aaaaaa";
+        ctx.fillRect(inputTBx, inputTBy, nColumn*(cellWidth+cellGap)+2*inputTbBorder-cellGap, nRow*(cellHeight+cellGap)+2*inputTbBorder-cellGap );
+        // draw Table number
+        ctx.fillStyle = "#222222";
+        ctx.textAlign = "center";
+        for(i=0; i<nRow; i++){
+          y = inputTBy + inputTbBorder + cellHeight/2 + i*(cellHeight + cellGap) +5;
+          ctx.fillText(i+1, inputTBx-15, y);
+        }
+        for(i=0; i<nColumn; i++){
+          x = inputTBx + inputTbBorder + cellWidth/2 + i*(cellWidth + cellGap) ;
+          ctx.fillText(i+1, x, inputTBy-10);
+        }
+        //ctx.fillText("แถว\nหลัก", inputTBx-5, inputTBy-5);
+      } //end of Function draw()**********************************
+
+      var cellWidth = 30;
+      var cellHeight = 30;
+      //***************Button to add and delete Picker****************//
+      var cellPckList = [];
+
+      var addPicker = new Button(120, 20, cellHeight, cellHeight, canvas)
+      addPicker.color = "#777777"; addPicker.textColor = "white"; addPicker.label = "+";
+
+      var delPicker = new Button(addPicker.x2+2, 20, cellHeight, cellHeight, canvas)
+      delPicker.color = "#777777"; delPicker.textColor = "white"; delPicker.label = "-";
+
+      addPicker.onClickDo = function(){
+        if(addPicker.x1 >= canvas.width-3*(cellHeight+5)-80 )
+          return;
+
+        cellPckList.push( new Picker(addPicker.x1, addPicker.y1, cellWidth, cellHeight, canvas) )
+        cellPckList[cellPckList.length-1].PckIDX = cellPckList.length-1;
+        addPicker.x1 += cellWidth+10;
+        delPicker.x1 += cellWidth+10;
+        remapPixelMap(canvas);
+      }
+      delPicker.onClickDo = function(){
+        if(cellPckList.length == 0)
+          return;
+
+        cellPckList[cellPckList.length-1].stateOn = "off" ;
+        cellPckList.pop();
+        
+        addPicker.x1 -= cellWidth+10;
+        delPicker.x1 -= cellWidth+10;
+        remapPixelMap(canvas);
+      }
+
+      addPicker.onClickDo(); // first initial 2 pickers
+      cellPckList[0].color = "#ffffff"; 
+      addPicker.onClickDo();
+      cellPckList[1].color = "#ff7247"; 
+      cellPckList[1].onClickDo();
+      
+      //***********Button to config Picker*************//
+      var pckConfBtn = new Button(canvas.width-80, 20, 60, cellHeight, canvas);
+      pckConfBtn.color = "#666666"; pckConfBtn.textColor = "white"; 
+      pckConfBtn.label = "แก้ไข";
+      pckConfBtn.onClickDo = function(){
+        if(selectedPck == undefined)
+          return;
+        selectedPck.onDblClickDo();
+      }
+
+      //**********Get dimebsion Size and create inputTable**********//
+      var nImg = 30;  inImgs.value = nImg; //default
+      var nRow = 6;   inRows.value = nRow;
+      var nColumn = 20; inColumns.value = nColumn;
+      function afterDimension(){
+        if( !confirm("การตั้งขนาดตารางอัฒจันทร์ใหม่จะลบข้อมูลเดิมทั้งหมด\nดำเนินการหรือไม่ ?") )
+          return;
+        for(row=0; row<nRow; row++){
+          for(column=0; column<nColumn; column++){
+            inputTable[row][column].stateOn = "off";
+          }
+        } 
+        console.log(inputTable); 
+        for(row=0; row<nRow; row++){
+          inputTable[row].splice(0, inputTable[row].length);
+        }
+        inputTable.splice(0,inputTable.length);
+        standMem.splice(0,standMem.length);
+        
+        nImg = inImgs.value;
+        nRow = inRows.value;
+        nColumn = inColumns.value;
+        nowImgNo = 0;
+        
+        if(nColumn*(cellWidth+cellGap)+2*inputTbBorder+10 >= 1100)
+          canvas.width = nColumn*(cellWidth+cellGap)+2*inputTbBorder+80;
+        else canvas.width = 1200;if(nColumn*(cellWidth+cellGap)+2*inputTbBorder+10 >= 1100)
+          canvas.width = nColumn*(cellWidth+cellGap)+2*inputTbBorder+80;
+        else canvas.width = 1200;
+        
+        pixelMap.canvas = new2dArray(canvas.width, canvas.height);
+        createInputTable();
+        build_standMem();
+        createDisPlayTb();
+        updateCanvas2();        
+        
+        remapPixelMap(canvas);
+      }
+
+      var nowImgNo = 0 //default
+      function whenImgNoDown(){
+        if (nowImgNo == 0)
+          nowImgNo = nImg - 1;
+        else
+          nowImgNo -= 1;
+        for(var i=0; i<cellList.length; i++){
+          cellList[i].getPckProp(); //cal cell to display value of table in imgNo
+        }
+      }
+      function whenImgNoUp(){
+        if (nowImgNo == nImg-1)
+          nowImgNo = 0;
+        else
+          nowImgNo += 1;
+        for(var i=0; i<cellList.length; i++){
+          cellList[i].getPckProp();
+        }
+      }
+
+      cellWidth = 30;
+      cellHeight = 30;
+      cellGap = 2;
+      var inputTBx = 40;
+      var inputTBy = 100;
+      var posCellX = inputTBx;
+      var posCellY = inputTBy;
+      var inputTbBorder = 6
+      
+      var inputTable = [];
+      function createInputTable(){
+        //inputTable = new Array(nRow);
+        for (var i=0; i<nRow; i++) {
+          inputTable[i] = new Array(nColumn);
+        }//create 2d Array
+        
+        posCellX = inputTBx + inputTbBorder;
+        posCellY = inputTBy + inputTbBorder;
+        for(row=0; row<nRow; row++){
+          for(column=0; column<nColumn; column++){
+            //console.log(row,column);
+            inputTable[row][column] = new Cell(posCellX, posCellY, cellWidth, cellHeight, canvas) 
+            inputTable[row][column].cellRow = row; //tag IDX so StandMem can get
+            inputTable[row][column].cellColumn = column;
+            
+            posCellX += cellWidth + cellGap;
+          }
+          posCellX = inputTBx + inputTbBorder;
+          posCellY += cellHeight + cellGap;
+        }
+        
+      }
+      
+      createInputTable();
+      
+      //**********************Create stand memory***********************//
+      
+      var standMem = [];
+      function build_standMem(){
+        for(var img=0; img<nImg; img++){
+          standMem[img] = new Array(nRow);
+        }
+        for(var img=0; img<nImg; img++){
+          for(var row=0; row<nRow; row++){
+            standMem[img][row] = new Array(nColumn);
+          }
+        } // create 3d Array
+        
+        for(var img=0; img<nImg; img++){
+          for(var row=0; row<nRow; row++){
+            for(var column=0; column<nColumn; column++){
+              standMem[img][row][column] = 0; //default
+            }
+          }
+        }
+      }
+      build_standMem();
+      
+      //*************************Part II DisPlay**********************//
+    </script>
+    
+      
+    <script>//*******************************************************//
+      //*****************************-_-*****************************//
+      
+      var canvas2 = document.getElementById("canvas2");
+      var ctx2 = canvas2.getContext("2d");
+      //getCanvasListener(canvas2);
+      buttonArr.canvas2 = [];
+      
+      function updateCanvas2(){
+        ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+        
+        //ctx2.scale(4, 4);
+        drawDpTbTag();
+        DpGetValue();
+        Box.drawAllBox(canvas2);
+        
+        //ctx2.scale(1/4, 1/4);
+      }
+      
+      var BoxList = {}
+      BoxList["canvas2"] = []
+      class Box{
+        constructor(x1, y1, w, h, incanvas) {
+          this.stateOn = "on";
+          this.canvas = incanvas;
+          this.ctx = this.canvas.getContext("2d");
+          this.x1 = x1 ;
+          this.x2 = x1 + w ;
+          this.y1 = y1 ;
+          this.y2 = y1 + h ;
+
+          this.w = w ;
+          this.h = h ;
+
+          this.color = "#ffffff" ; //default
+          this.textColor = "#000000" ;
+          this.label = '' ;
+          
+          BoxList[this.canvas.id].push( this );
+        }
+        drawBox(){
+          if(this.stateOn == "off")
+            return;
+
+          this.x2 = this.x1 + this.w ;
+          this.y2 = this.y1 + this.h ;
+          //ctx.strokeRect(this.x1, this.y1, this.w, this.h);
+          
+          this.ctx.fillStyle = this.color ;
+          this.ctx.fillRect(this.x1, this.y1, this.w, this.h);          
+
+          this.ctx.fillStyle = this.textColor;
+          this.ctx.textAlign = "center" ;
+          this.ctx.font = 0.6*this.h + "px Sarabun, sans-serif"
+          this.ctx.fillText(this.label, (this.x1 + this.x2)/2, this.y2 - 0.3*this.h, this.w); 
+        }
+        static drawAllBox(canvas){
+          for(var i=0; i<BoxList[canvas.id].length; i++){
+            BoxList[canvas.id][i].drawBox();
+          }
+        }
+        set setColor(newColor){
+          this.color = newColor;
+          this.drawBox();
+        }
+        set setLabel(newLabel){
+          this.label = newLabel;
+          this.drawBox();
+        }
+      }
+        
+        
+      //**************************regen DpTb********************************//
+      var dPlyLength = 15;
+      var dPlyLines = Math.ceil(nImg / dPlyLength);
+      inDplyLen.value = dPlyLength;
+      inDplyLen.addEventListener("keyup",function(event){
+        if (event.keyCode === 13) {
+          event.preventDefault();
+          genDisplayTb();
+        }
+      });
+
+      function genDisplayTb(){
+        if(isNaN(inDplyLen.value) || inDplyLen.value<=0){
+          inDplyLen.value = dPlyLength;
+          return;
+        }
+        inDplyLen.value = Math.floor(inDplyLen.value);
+        dPlyLength = inDplyLen.value;
+        dPlyLines = Math.ceil(nImg / dPlyLength);
+        
+        createDisPlayTb();
+        updateCanvas2();
+      }
+      
+      //***************function to creeate display Table*******************//
+      var dpCellWidth = cellWidth;
+      var dpCellHeight = cellHeight;
+      var dpcellGap = cellGap;
+      var dpTableX = 20;
+      var dpTableY = 40;
+      var dpPosCellX = dpTableX;
+      var dpPosCellY = dpTableY;
+        
+      var disPlayTb = []; //---------------- -_- -_- -_- -_- -_- -_- -------//
+      function createDisPlayTb(){
+        for(row=0; row<disPlayTb.length; row++){
+          for(column=0; column<disPlayTb[row].length; column++){
+            for(img=0; img<disPlayTb[row][column].length; img++){
+              disPlayTb[row][column][img].stateOn = "off"; 
+            }
+          }
+        }            
+            
+        disPlayTb.splice(0, disPlayTb.length);
+        dPlyLines = Math.ceil(nImg / dPlyLength);
+        
+        for(row=0; row<nRow; row++){
+          disPlayTb[row] = []; 
+          for(column=0; column<nColumn; column++){
+             disPlayTb[row][column] = new Array(nImg);
+          }
+        }
+        
+        dpPosCellX = dpTableX;
+        dpPosCellY = dpTableY;
+        for(row=0; row<nRow; row++){
+          for(column=0; column<nColumn; column++){
+            for(img=0; img<nImg; img++){
+              
+              if(dpPosCellX >= dPlyLength*(dpCellWidth+dpcellGap)){
+                dpPosCellX = dpTableX;
+                dpPosCellY += 2*(dpCellHeight+dpcellGap);
+              }
+              
+              disPlayTb[row][column][img] = new Box(dpPosCellX, dpPosCellY+dpCellHeight, dpCellWidth, dpCellHeight, canvas2);
+              dpPosCellX += dpCellWidth + dpcellGap;
+                            
+            }
+            dpPosCellX = dpTableX;
+            dpPosCellY += 4*(dpCellHeight+dpcellGap);
+          }
+          //dpPosCellX = dpTableX;
+          //dpPosCellY += 4*(dpCellHeight+dpcellGap);
+        }
+        canvas2.height = nRow*nColumn*(dPlyLines+1)*2*(dpCellHeight+dpcellGap)+30 ;
+        //Box.drawAllBox(canvas2);
+      }
+    
+      //createDisPlayTb();
+      
+      
+      //**************************draw number Tag of displayTB******//
+      function drawDpTbTag(){
+        dpPosCellX = dpTableX;
+        dpPosCellY = dpTableY;
+        for(row=0; row<nRow; row++){
+          for(column=0; column<nColumn; column++){ 
+            
+            ctx2.fillStyle = "#b2b2b2";
+            ctx2.fillRect(dpPosCellX-7, dpPosCellY, dPlyLength*(dpCellWidth+dpcellGap)+14, 2*dPlyLines*(dpCellHeight+dpcellGap)+5);
+            
+            ctx2.font = 16 + "px Sarabun, sans-serif";
+            ctx2.fillStyle = "black" ;
+            ctx2.textAlign = "left";
+            ctx2.textBaseline = "top";
+            seatLabel = "แถวที่ "+(row+1)+" หลักที่ "+(column+1) ;
+            ctx2.fillText(seatLabel, dpPosCellX, dpPosCellY-cellHeight);
+            
+            for(img=0; img<nImg; img++){
+              if(dpPosCellX >= dPlyLength*(dpCellWidth+dpcellGap)){
+                dpPosCellX = dpTableX;
+                dpPosCellY += 2*(dpCellHeight+dpcellGap);
+              }
+              
+              ctx2.fillStyle = "black"; 
+              ctx2.textAlign = "center";
+              ctx2.textBaseline = "bottom";
+              ctx2.fillText(img+1, dpPosCellX+dpCellWidth/2, dpPosCellY+cellHeight-cellGap-3);
+              
+              dpPosCellX += dpCellWidth + dpcellGap;             
+            }
+            dpPosCellX = dpTableX;
+            dpPosCellY += 4*(dpCellHeight+dpcellGap);
+          }
+          //dpPosCellX = dpTableX;
+          //dpPosCellY += 4*(dpCellHeight+dpcellGap);
+        }
+      }// end os function DrawDpTbTag()
+      genDisplayTb();
+      
+      function DpGetValue(){
+        for(row=0; row<nRow; row++){
+          for(column=0; column<nColumn; column++){
+            for(img=0; img<nImg; img++){
+              disPlayTb[row][column][img].setColor = cellPckList[standMem[img][row][column]].color;
+              disPlayTb[row][column][img].setLabel = cellPckList[standMem[img][row][column]].label;
+            }
+          }
+        }
+      }
+      //*************************************************************************//
+      
+      function download_DpTb(element) {
+        //ctx2.scale(2, 2);
+        updateCanvas2();
+        var image = canvas2.toDataURL("image/jpg");
+        element.href = image;
+        //ctx2.scale(1/2, 1/2);
+        //updateCanvas2();
+      };
+      
+      var pickerMem = []
+      var exJSONobj = {}
+      
+      function saveJASON(){
+        for(var i=0; i<cellPckList.length; i++){
+          pickerMem[i] = {};
+          pickerMem[i].color = cellPckList[i].color;
+          pickerMem[i].label = cellPckList[i].label;
+        }
+        exJSONobj = {
+          pickerMem : pickerMem ,
+          standMem : standMem ,
+          nRow : nRow ,
+          nColumn :nColumn ,
+          nImg : nImg ,
+          dPlyLength : dPlyLength
+        }
+        txtFile_form.value = JSON.stringify(exJSONobj);
+      }
+      
+      var imJSONobj = {};
+      function uploadJSON(){
+        if(!confirm("ข้อมูลการออกแบบเก่าจะหายไป โปรดอย่าลืมบันทึกข้อมูลเก่า \nดำเนินการ?"))
+          return;
+        
+        imJSONobj = JSON.parse(txtFile_form.value); 
+        pickerMem = imJSONobj.pickerMem;
+        
+        for(var i=cellPckList.length; i>0; i--){
+          delPicker.onClickDo(); 
+        }
+        for(var i=0; i<pickerMem.length; i++){
+          addPicker.onClickDo(); 
+        }
+        for(var i=0; i<cellPckList.length; i++){
+          cellPckList[i].color = pickerMem[i].color;
+          cellPckList[i].label = pickerMem[i].label;
+        }
+        standMem = imJSONobj.standMem;
+        
+        inRows.value = nRow = imJSONobj.nRow;
+        inColumns.value = nColumn = imJSONobj.nColumn;
+        inImgs.value = nImg = imJSONobj.nImg;
+        inDplyLen.value = dPlyLength = imJSONobj.dPlyLength;
+        nowImgNo = 0;        
+        pixelMap.canvas = new2dArray(canvas.width, canvas.height);
+        createInputTable();
+        genDisplayTb();        
+        for(var i=0; i<cellList.length; i++){
+          cellList[i].getPckProp(); //cal cell to display value of table in imgNo
+        }
+        remapPixelMap(canvas);
+        
+      }
+    /*  
+      button2 = new Button(60, 25, 120, 45, canvas2);
+      button2.label = "สวัสดี hay";
+      button2.color = "orange";
+      button2.onClickDo = function() {
+        alert(event.offsetX +' '+ event.offsetY);   
+      }*/
+    </script>
+  </body>
+  <footer>
+    
+    <p align="right" >Developed by LuckyDeveloper <br>luckydekdee@gmail.com </p>
+  </footer>
+</html>
