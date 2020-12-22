@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Moonphase Generater</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+    }
+    a, p, h1{
+      font-family: Arial, Helvetica, sans-serif;
+      color:darkslategrey
+    }
+    button {
+      background-color: #555555;
+      border: none;
+      color: white;
+      padding: 10px 30px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 2px 2px;
+      cursor: pointer;
+    }
+    .color{
+      width: 60px;
+      height: 30px;
+      
+    }
+  </style>
+</head>
+<body>
+  
+  <h1>Moonphase Generator</h1>
+  <div align="center">
+    <a>สีด้านมืด : </a>
+    <input type="color" class="color" id="darkPicker">
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <a>สีด้านสว่าง : </a>
+    <input type="color" class="color" id="lightPicker">
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    <a>เทพื้นหลังขาว : </a>
+    <input type="checkbox" id="isBgWhite">
+  </div>
+  
+  <p align = center>
+    <a>WEST</a> &nbsp
+    <canvas id="canvas" width="360" height="360"
+            style="background-color : white; 
+                   border : 1px solid #cccccc;">
+    </canvas> &nbsp
+    <a>EAST</a>
+  </p>
+  <p align = "center">
+    <a id="label"></a> &nbsp&nbsp
+    <a id="label2"></a>
+  </p>
+  
+  <div align = center>
+    <button onmousedown=" " onmouseup="previousDay()"
+            ontouchstart=" ">วันก่อน</button> &nbsp&nbsp
+    <button onmousedown=" " onmouseup="nextDay()"
+            ontouchstart=" ">วันถัดไป</button>
+  </div>
+  
+  <p>แสดงรูปร่างดิถีของดวงจันทร์ตามวันข้างขึ้น ข้างแรมทางจันทรคติไทย สามารถ copy รูปภาพ หรือ save as เป็น .png เพื่อให้ภาพไม่ติดพื้นหลัง (ใช้ในเว็บบราวเซอร์เช่น Google Chrome) </p>
+
+  <script>
+    const q = (id) => document.getElementById(id);
+    
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    //drawMoon(canvas.width/2,canvas.height/2,150,12);
+    setInterval(frameUpdate, 20);
+    
+    var darkColor = "#000000";
+    var lightColor = "#ffd25a";
+    q('darkPicker').value = darkColor;
+    q('lightPicker').value = lightColor;
+    
+    var moonAge = 0;
+    function frameUpdate(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if(q('isBgWhite').checked){
+        ctx.fillStyle = "#ffffff"
+        ctx.fillRect(0, 0, canvas.width, canvas. height);
+      }
+      
+      darkColor = q('darkPicker').value;
+      lightColor = q('lightPicker').value;
+      
+      drawMoon(canvas.width/2,canvas.height/2, 150, moonAge);
+      q("label").innerHTML = ageToKham(moonAge);
+      q("label2").innerHTML = 'Moon Age : ' + moonAge
+      //moonAge += 0.05;
+    }
+    
+    function nextDay(){
+      if(moonAge == 29)
+        moonAge = 0;
+      else 
+        moonAge += 1;
+      console.log(moonAge);
+    }
+    function previousDay(){
+      if(moonAge == 0)
+        moonAge = 29;
+      else 
+        moonAge -= 1;
+      console.log(moonAge);
+    }
+    
+    function ageToKham(age) {
+      if (age == 0) 
+        age = 30
+        
+      if(1 <= age && age <=15 )
+        kham = 'ขึ้น '+age+' ค่ำ' ;
+      else if(16<= age && age <= 30)
+        kham = 'แรม '+ (age-15)+' ค่ำ' ; 
+      
+      return kham ;
+    }
+    
+    function drawMoon(x,y,radius,age){
+      ctx.translate(x,y)
+      
+      var elongation = (age)*2*Math.PI/30 ;
+      elongation = elongation % (2*Math.PI);
+      var darkWestX = -Math.cos(elongation)*radius;
+      var darkEastX = Math.cos(elongation)*radius;
+      
+      var visible
+      if(0 <= elongation && elongation < Math.PI)
+        visible = darkWestX;
+      else if(Math.PI <= elongation && elongation < 2*Math.PI)
+        visible = darkEastX;
+      
+      //alert(darkEastX);      
+      
+      if (age == 15)
+      {
+        ctx.beginPath();
+        ctx.arc(0, 0, radius, 0, 2*Math.PI, false);
+        ctx.fillStyle = lightColor;
+        ctx.fill();
+      }
+      
+      else if (age == 30)
+      {
+        ctx.beginPath();
+        ctx.arc(0, 0, radius, 0, 2*Math.PI, false);
+        ctx.fillStyle = darkColor;
+        ctx.fill();
+      }
+        
+      else if (visible == darkWestX)
+      {
+        if (visible < 0){
+          ctx.beginPath();
+          ctx.arc(0, 0, radius, Math.PI/2, 3*Math.PI/2, false);
+          ctx.fillStyle = lightColor;
+          ctx.fill();
+          
+          ctx.beginPath();
+          shadowPath(ctx, visible, radius);
+          ctx.fillStyle = darkColor;
+          ctx.fill();
+          
+          ctx.beginPath();
+          ctx.arc(0, 0, radius, Math.PI/2, 3*Math.PI/2, true);
+          ctx.fillStyle = darkColor;
+          ctx.fill();
+        }
+        else if (visible >= 0){
+          ctx.beginPath();
+          ctx.arc(0, 0, radius, Math.PI/2, 3*Math.PI/2, true);
+          ctx.fillStyle = darkColor;
+          ctx.fill();
+
+          ctx.beginPath();
+          shadowPath(ctx, visible, radius);
+          ctx.fillStyle = lightColor;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(0, 0, radius, Math.PI/2, 3*Math.PI/2, false);
+          ctx.fillStyle = lightColor;
+          ctx.fill();
+        } 
+      }
+      
+      else if (visible == darkEastX)
+      {
+        if (visible < 0){
+          ctx.beginPath();
+          ctx.arc(0, 0, radius, Math.PI/2, 3*Math.PI/2, false);
+          ctx.fillStyle = darkColor;
+          ctx.fill();
+
+          ctx.beginPath();
+          shadowPath(ctx, visible, radius);
+          ctx.fillStyle = lightColor;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(0, 0, radius, Math.PI/2, 3*Math.PI/2,true);
+          ctx.fillStyle = lightColor;
+          ctx.fill();
+        }
+        else if (visible >= 0){
+          ctx.beginPath();
+          ctx.arc(0, 0, radius, Math.PI/2, 3*Math.PI/2, true);
+          ctx.fillStyle = lightColor;
+          ctx.fill();
+
+          ctx.beginPath();
+          shadowPath(ctx, visible, radius);
+          ctx.fillStyle = darkColor;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(0, 0, radius, Math.PI/2, 3*Math.PI/2,false);
+          ctx.fillStyle = darkColor;
+          ctx.fill();
+        } 
+      }        
+     
+      ctx.resetTransform();
+      }//end of drawMoon()
+      
+    function shadowPath(ctx, xRad, yRad){
+        ctx.moveTo(0,-yRad);
+        if (xRad >= 0) 
+          ctx.ellipse(0,0, xRad, yRad, 0, Math.PI/2, 3*Math.PI/2, true);
+        else if (xRad < 0)
+          ctx.ellipse(0,0, Math.abs(xRad), yRad, 0, Math.PI/2, 3*Math.PI/2); 
+    }
+      
+  </script>
+
+</body>
+</html>
