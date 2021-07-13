@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@svgdotjs/svg.js@3.0/dist/svg.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.2/chroma.min.js" integrity="sha512-8TVPS0EFkkmtT6yPb5K4csnSt3tjbKRrs0F8gvTNKv2OxOcwDO7+Klkz86gMVrzfqtZos5N2a+k+r9D+hlccmQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--<script src="chroma.min.js"></script>-->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt&family=Roboto&family=Sarabun&display=swap" rel="stylesheet">
+
+    <!--<link rel="stylesheet" href="styles.css">-->
+    <style>
+        .slider1 {
+            -webkit-appearance: none;
+            width: 56%;
+            height: 6px;
+            border-radius: 6px;
+            background: #b8b8b8;
+            outline: none;
+            opacity: 0.84;
+            -webkit-transition: .12s;
+            transition: opacity .12s;
+        }
+        
+        .slider1:hover {
+            opacity: 1;
+        }
+        
+        .slider1::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #2b2b2b;
+            cursor: pointer;
+        }
+        
+        .slider1::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #2b2b2b;
+            cursor: pointer;
+        }
+        
+        .label3 {
+            fill: black;
+            font-size: 18px;
+            font-family: 'Prompt', 'Sarabun', 'Roboto', Helvetica;
+            text-decoration: none;
+        }
+    </style>
+    <style>
+        body {
+            margin: 0;
+        }
+        
+        .scrollable-place {
+            height: 1000px;
+        }
+        
+        .stop-scrolling {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .draggable {
+            cursor: grab;
+        }
+        
+        .draggable:active {
+            cursor: grabbing;
+        }
+        
+        button {
+            cursor: pointer;
+        }
+        
+        .shadow {
+            box-shadow: 0 1px 19px 1px rgba(0, 0, 0, 0.62);
+        }
+        
+        .wrapper {
+            position: relative;
+            width: 0;
+            height: 0;
+            margin-bottom: -5px;
+        }
+        
+        .divBtn1 {
+            width: 190px;
+            padding: 8px 4px;
+            position: absolute;
+            top: -26px;
+            left: -2px;
+            /*margin-bottom: -50px;*/
+            border-radius: 30px;
+            background-color: rgb(241, 240, 241);
+            box-shadow: 0 1.2px 11px 0 rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .divStatus1 {
+            /*width: auto;*/
+            padding: 8px 8px;
+            position: absolute;
+            top: -25px;
+            left: -36px;
+            /*margin-bottom: -50px;*/
+            border-radius: 30px;
+            background-color: rgb(241, 240, 241);
+            box-shadow: 0 1.2px 11px 0 rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .btn1 {
+            border: none;
+            background-color: #00000000;
+            margin: 0 2px;
+        }
+        
+        .icon1 {
+            font-size: 22px;
+            color: rgb(42, 42, 43);
+            transition: 0.16s;
+        }
+        
+        .icon1:hover {
+            color: rgb(82, 81, 83);
+        }
+        
+        .icon2 {
+            font-size: 18px;
+            color: rgb(42, 42, 43);
+            transition: 0.1s;
+        }
+        
+        .icon2:hover {
+            color: rgb(82, 81, 83);
+        }
+        
+        .label1 {
+            text-anchor: middle;
+            /*dominant-baseline: middle;*/
+            font-family: 'Roboto', sans-serif;
+            /*'chulalongkorn', 'K2D', 'Prompt',*/
+            font-size: 12px;
+            fill: #dadada;
+            /*text-decoration: none;*/
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        .label2 {
+            text-anchor: middle;
+            /*dominant-baseline: middle;*/
+            font-family: 'Roboto', sans-serif;
+            font-size: 12px;
+            fill: #ffffff;
+            pointer-events: none;
+            user-select: none;
+        }
+        
+        #divContainer {
+            display: flex;
+            flex-direction: row;
+            /*flex-wrap: wrap;*/
+            /*background-color: rgb(242, 236, 245);*/
+            justify-content: center;
+            /*padding: 80px 0px;*/
+            transition: 0.2s;
+        }
+        
+        #div_svg1 {
+            transition: 0.2s;
+        }
+        
+        #div_svg2 {
+            transition: 0.2s;
+        }
+        
+        .containTitle1 {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            padding-top: 10px;
+        }
+        
+        .div_title1 {
+            font-size: 24px;
+            font-family: 'Prompt', 'Sarabun', sans-serif;
+            color: white;
+            background-color: rgb(78, 79, 87);
+            padding: 6px 24px;
+            width: fit-content;
+            border-radius: 30px;
+            position: relative;
+            left: -416px;
+            top: 12px;
+        }
+        
+        .scaling {
+            animation: scaling_kf 5s alternate infinite ease-in-out;
+        }
+        
+        @keyframes scaling_kf {
+            0% {
+                transform: scale(1.04);
+            }
+            100% {
+                transform: scale(1.20);
+            }
+        }
+        
+        #svg1 {}
+        
+        @media only screen and (max-width: 1200px) and (min-width: 600px) {
+            /* for landscape phone*/
+            #divContainer {
+                /*padding: 40px 0;*/
+            }
+            #svg1 {
+                width: 54.5454vw;
+                height: 40.9090vw;
+            }
+            #svg2 {
+                width: 45.4545vw;
+                height: 40.9090vw;
+                /*5/11 - 100--84*/
+            }
+            .divBtn1 {
+                left: 1.2vw;
+                top: -2.5vw;
+                width: 19vw;
+                padding: 0.68vw 0.18vw;
+            }
+            .icon1 {
+                font-size: 2vw;
+            }
+            .icon2 {
+                font-size: 1.8vw;
+            }
+            .slider1::-webkit-slider-thumb {
+                width: 1.4vw;
+                height: 1.4vw;
+            }
+            .slider1::-moz-range-thumb {
+                width: 1.4vw;
+                height: 1.4vw;
+            }
+            .divStatus1 {
+                left: 1.3vw;
+                top: -2.5vw;
+                padding: 0.68vw 0.32vw;
+            }
+            #svg3 {
+                width: 26vw;
+                height: 2.7542vw;
+            }
+            .containTitle1 {
+                justify-content: flex-start;
+            }
+            .div_title1 {
+                left: 2vw;
+                top: 1.0vw;
+                font-size: 3vw;
+            }
+        }
+        
+        @media only screen and (max-width: 1200px) and (min-width: 600px) and (orientation: portrait) {
+            /*------------------for portrait tablets ------------------*/
+            #divContainer {
+                flex-direction: column;
+                /*padding: 40px 0;*/
+                justify-content: center;
+                align-items: center;
+            }
+            #svg1 {
+                width: 70vw;
+                height: 52.5vw;
+            }
+            #svg2 {
+                width: 70vw;
+                height: 63vw;
+                /*5/11 - 100--84*/
+            }
+            .containTitle1 {
+                justify-content: flex-start;
+            }
+            .div_title1 {
+                left: 11vw;
+                top: 1.0vw;
+                font-size: 3.6vw;
+            }
+        }
+        
+        @media only screen and (max-width: 600px) {
+            /*------------------------ for typical portrait phones ------------------------*/
+            #divContainer {
+                flex-direction: column;
+                /*padding: 40px 0;*/
+            }
+            #svg1 {
+                width: 100vw;
+                height: 75vw;
+            }
+            #svg2 {
+                width: 100vw;
+                height: 90vw;
+                /*84*/
+            }
+            .divBtn1 {
+                left: -7.2vw;
+                top: -7.5vw;
+                width: 50vw;
+                padding: 1.8vw 0.06vw;
+                padding-left: 7vw;
+            }
+            .btn1 {
+                margin: 0 0.2vw;
+            }
+            .icon1 {
+                font-size: 4.2vw;
+            }
+            .icon2 {
+                font-size: 3.8vw;
+            }
+            .slider1 {
+                height: 2vw;
+            }
+            .slider1::-webkit-slider-thumb {
+                width: 3vw;
+                height: 3vw;
+            }
+            .slider1::-moz-range-thumb {
+                width: 3vw;
+                height: 3vw;
+            }
+            .divStatus1 {
+                left: -7.2vw;
+                top: -5.2vw;
+                padding: 1.8vw 1.3vw;
+                padding-left: 8vw;
+            }
+            #svg3 {
+                width: 60vw;
+                height: 6.3559vw;
+            }
+            .containTitle1 {
+                justify-content: flex-start;
+            }
+            .div_title1 {
+                left: -5vw;
+                top: 1.2vw;
+                font-size: 4.2vw;
+                padding: 1.5vw 6vw 1.5vw 8vw;
+            }
+        }
+    </style>
+
+
+    <div class="containTitle1">
+        <div class="div_title1 shadow">ลองลากดวงจันทร์และโลก</div>
+    </div>
+    <div text="center" id="divContainer">
+        <div id="div_svg1">
+            <svg id="svg1" class="shadow" viewBox="0 0 600 450" preserveAspectRatio="xMidYMid meet"></svg>
+            <div class="wrapper">
+                <div class="divBtn1">
+                    <button class="btn1" id="play_btn"> <i class="fa fa-play icon1" id="play_icon"></i> </button>
+                    <input type="range" min="1" max="100" class="slider1" id="speed_sld">
+                    <button class="btn1" id="lock_btn"> <i class="fa fa-unlock-alt icon2" aria-hidden="true" id="lock_icon"></i> </button>
+                </div>
+            </div>
+        </div>
+        <div id="div_svg2">
+            <svg id="svg2" class="shadow" viewBox="0 0 500 450" preserveAspectRatio="xMidYMid meet"></svg>
+            <div class="wrapper">
+                <div class="divStatus1">
+                    <svg id="svg3" viewBox="0 0 236 25" preserveAspectRatio="xMidYMid meet"></svg>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        var q = (idName) => document.getElementById(idName);
+        var s = (idName) => $('#' + idName); //jQuery
+        const Pi = Math.PI;
+        const rad = Pi / 180;
+        const moonElong_per_hour = 0.5; // = 360/30/24 = 0.5 moonDeg per hr
+        // var print = (v) => console.log(v);
+    </script>
+    <!--<script src="functions3.js"></script>-->
+    <script>
+        //------------------------------------------------------------------------------------------------------------------------------
+        function polar2xy(r, deg, ox = 0, oy = 0, reverseY = true) {
+            var x = r * Math.cos(deg * rad) + ox;
+            if (reverseY)
+                var y = r * -Math.sin(deg * rad) + oy;
+            else
+                var y = r * Math.sin(deg * rad) + oy;
+            return {
+                x: x,
+                y: y
+            }
+        }
+
+        function xy2polar(x, y, ox = 0, oy = 0, reverseY = true) {
+            let dx = x - ox;
+            let dy = y - oy;
+            if (reverseY)
+                dy = -dy;
+            let r = Math.sqrt(dx ** 2 + dy ** 2);
+            let deg = Math.atan(dy / dx) / rad;
+            if (dx < 0) //q2 U q3
+                deg += 180; //because of inverse funcion of tangent
+            else if (dy < 0) //q4
+                deg += 360;
+            return {
+                deg: deg,
+                r: r
+            }
+        }
+
+        function degForm(deg) {
+            deg = deg % 360;
+            if (deg < 0)
+                deg += 360;
+            return deg
+        }
+
+        function round24(hour) {
+            hour = hour % 24;
+            if (hour < 0)
+                hour += 24;
+            return hour
+        }
+
+        function roundWithin(x, oneRound = 360) {
+            x = x % oneRound;
+            if (x < 0)
+                x += oneRound;
+            return x
+        }
+
+        function roundWithinSide(x, oneRound = 360) {
+            x = roundWithin(x, oneRound);
+            if (x > oneRound / 2)
+                x -= oneRound;
+            return x
+        }
+
+
+        function disableScroll() {
+            document.body.classList.add("stop-scrolling");
+        }
+
+        function enableScroll() {
+            document.body.classList.remove("stop-scrolling");
+        }
+        class Draggable {
+            constructor(node, hostNode, whenDragged = function(MX, MY) {}) {
+                this.elem = node;
+                this.host = hostNode;
+                this.isMouseDown = false;
+
+                this.whenDragged = whenDragged;
+                this.whenStart = function(MX, MY) {};
+                this.whenEnd = function() {};
+
+                this.elem.addEventListener('mousedown', this.mouseDown.bind(this));
+                this.host.addEventListener('mousemove', this.mouseMove.bind(this));
+                this.host.addEventListener('mouseup', this.mouseUp.bind(this));
+
+                this.elem.addEventListener('touchstart', function() {
+                    disableScroll();
+                    this.mouseDown.bind(this)();
+                }.bind(this));
+                this.host.addEventListener('touchmove', this.mouseMove.bind(this));
+                this.host.addEventListener('touchend', function() {
+                    this.mouseUp.bind(this)();
+                    enableScroll();
+                }.bind(this));
+
+                $(node).addClass('draggable'); //using jQuery
+            }
+            mouseDown() {
+                let MX = event.clientX;
+                let MY = event.clientY;
+                if (typeof(MX) != 'number' || typeof(MY) != 'number') {
+                    MX = event.touches[0].clientX;
+                    MY = event.touches[0].clientY;
+                }
+
+                let pt = trans_screen2svg(this.host, MX, MY); //transforming coordinate to viewBox
+                MX = pt.x;
+                MY = pt.y;
+                this.whenStart(MX, MY);
+                this.isMouseDown = true;
+            }
+            mouseMove() {
+                if (this.isMouseDown) {
+                    event.preventDefault();
+                    let MX = event.clientX;
+                    let MY = event.clientY;
+                    if (typeof(MX) != 'number' || typeof(MY) != 'number') {
+                        MX = event.touches[0].clientX;
+                        MY = event.touches[0].clientY;
+                    }
+
+                    let pt = trans_screen2svg(this.host, MX, MY); //transforming coordinate to viewBox
+                    MX = pt.x;
+                    MY = pt.y;
+                    this.whenDragged(MX, MY);
+                }
+            }
+            mouseUp() {
+                if (this.isMouseDown) {
+                    this.isMouseDown = false;
+                    this.whenEnd(event.offsetX, event.offsetY);
+                }
+            }
+        }
+
+        function trans_screen2svg(svgEle, x, y) {
+            let point = svgEle.createSVGPoint();
+            point.x = x;
+            point.y = y;
+            point = point.matrixTransform(svgEle.getScreenCTM().inverse());
+            //console.log('Matrix: ', svgEle.getScreenCTM().inverse())
+            return point
+        }
+
+
+        //----------------------------color sclae function --- using chroma.js ------------------//
+        //---------------------- https://gka.github.io/chroma.js/ -------------------------------//
+
+        function transpose2dArray(mat) {
+            var newArr = [];
+            for (i = 0; i < mat[0].length; i++) {
+                newArr[i] = [];
+                for (j = 0; j < mat.length; j++) {
+                    newArr[i][j] = mat[j][i];
+                }
+            }
+            return newArr
+        }
+
+        class Scale_ColorPairs { //จับแต่ละสีใน arr มาทำ scale กับอีกอัน เพื่อใน arr มี stops ของ gradient, เมธอดจะ return อาร์เรย์ทั้งสาม stops
+            constructor(list_of_stopArrs) {
+                let colorsToScale_list = transpose2dArray(list_of_stopArrs);
+                this.scaleFunc_arr = [];
+                for (let colorArr of colorsToScale_list) {
+                    this.scaleFunc_arr.push(chroma.scale(colorArr).domain([0, 1]).mode('lab')); //array of functions to reurn colors
+                }
+            }
+            getColorsAt(point) {
+                var ans = [];
+                for (let i = 0; i < this.scaleFunc_arr.length; i++) {
+                    ans[i] = this.scaleFunc_arr[i](point).hex(); //return hex string from a specific fraction value
+                }
+                return ans
+            }
+        }
+
+        var defT = { //defined times
+            init: function(withinTime) { //changing within 1.2hr around sunriseset
+                this.sunrise = 6;
+                this.sunset = 18;
+                this.dusk1 = 18 - withinTime;
+                this.dusk2 = 18 + withinTime;
+                this.dawn1 = 6 - withinTime;
+                this.dawn2 = 6 + withinTime;
+                this.twiRange = withinTime + withinTime;
+            }
+        }
+        defT.init(1.2);
+
+        class ScaleColorArrs_byTime {
+            constructor(timeCol_arr) { //[[6, colArr1], [18, colArr2], ...]
+                var timeAndCol_arr = transpose2dArray(timeCol_arr);
+                var timeHour_list = timeAndCol_arr[0];
+                var colorsToScale_list = transpose2dArray(timeAndCol_arr[1]);
+
+                var stopPoints = [];
+                for (let timeHour of timeHour_list) {
+                    //timeHour = round24(timeHour);
+                    stopPoints.push(timeHour / 24)
+                }
+
+                this.scaleFunc_arr = [];
+                for (let i = 0; i < colorsToScale_list.length; i++) {
+                    this.scaleFunc_arr[i] = chroma.scale(colorsToScale_list[i]).domain(stopPoints).mode('lab'); //array of functions to return colors
+                }
+
+            }
+            getColorsAtTime(hour) {
+                var point = round24(hour) / 24;
+                var ans = [];
+                for (let i = 0; i < this.scaleFunc_arr.length; i++) {
+                    ans[i] = this.scaleFunc_arr[i](point).hex(); //return hex string from a specific fraction value
+                }
+                return ans
+            }
+        }
+
+
+        //------------------------------------------------ For status bar แสดงวันจันทร- เวลา ----------------------------//
+
+        class Clock {
+            constructor(x, y, r, thick, draw, color = '#202020') {
+                this.x = x;
+                this.y = y;
+                this.r = r;
+                this.color = color;
+                //this.time = 0;
+
+                this.cirFrame = draw.circle().center(x, y).radius(1 * r).fill('none').stroke({
+                    color: this.color,
+                    width: thick
+                });
+
+                let exceed = 0.15 * this.r;
+
+                this.minHand_L = this.r * 0.75;
+                this.minHand = draw.line(this.x, this.y + exceed, this.x, this.y - this.minHand_L).stroke({
+                    color: this.color,
+                    width: thick
+                }).attr('stroke-linecap', 'round');
+
+                this.hourHand_L = this.r * 0.5;
+                this.hourHand = draw.line(this.x, this.y + exceed, this.x, this.y - this.hourHand_L).stroke({
+                    color: this.color,
+                    width: thick * 1.2
+                }).attr('stroke-linecap', 'round');
+
+                this.cenP = draw.circle().center(x, y).radius(1.0 * thick).fill(this.color)
+
+                this.group = draw.group().add(this.cirFrame).add(this.minHand).add(this.hourHand).add(this.cenP);
+            }
+            setTime(hour) {
+                hour = round24(hour);
+                let min = (hour % 1) * 60;
+                this.hourHand.transform({
+                    rotate: hour * (360 / 12),
+                    origin: [this.x, this.y]
+                })
+                this.minHand.transform({
+                    rotate: min * (360 / 60),
+                    origin: [this.x, this.y]
+                })
+            }
+        }
+
+        function twoDigit(num) {
+            if (num.toString().length == 1)
+                return '0' + num.toString()
+            else
+                return num.toString()
+        }
+
+        function clockFormat(time) {
+            time = round24(time);
+            var hour = Math.floor(time);
+            var min = (time - hour) * 60;
+            min = Math.floor(min);
+            return twoDigit(hour) + ' : ' + twoDigit(min)
+
+        }
+
+
+        function ageToKham(age) {
+            age = roundWithin(age, 30);
+            age = Math.floor(age);
+            if (age == 0)
+                age = 30;
+            if (age <= 15) {
+                return 'ขึ้น ' + age.toString() + ' ค่ำ'
+            } else if (age > 15)
+                return 'แรม ' + (age - 15).toString() + ' ค่ำ'
+        }
+
+        //======================================================== end of functions file ============================================//
+        //===========================================================================================================================/
+    </script>
+    <script>
+        var Now = {
+            hour: 0,
+            moonElong: 180,
+            isPlaying: true,
+            isLocked: false,
+            speed: 0.12, // hr per frame
+            pause: function() {
+                play_btn.showPlay();
+                Now.isPlaying = false;
+            },
+            play: function() {
+                play_btn.showPause();
+                Now.isPlaying = true;
+            },
+            lock: function() {
+                lock_btn.showLock();
+                Now.isLocked = true;
+            },
+            unlock: function() {
+                lock_btn.showUnlock();
+                Now.isLocked = false;
+            }
+        };
+        //Now.isPlaying = false;
+
+        setInterval(frame, 20);
+
+        function frame() {
+            //console.table(Now.hour, Now.moonElong)
+            earth1.setHour(Now.hour);
+            moon1.setElong(Now.moonElong);
+
+            sun2.setHour(Now.hour);
+            sun2.updateColorAtTime(Now.hour);
+            moon2.updateFrom_elongAndHour(Now.moonElong, Now.hour);
+
+            sky2.updateColorAtTime(Now.hour);
+            land2.updateColorAtTime(Now.hour);
+            moon2.update_backBallColor();
+
+            clockSymb.clock.setTime(Now.hour);
+            clockLabel.setTime(Now.hour);
+            moonIcon3.moon.setElong(Now.moonElong);
+            khamLabel.setAge((Now.moonElong / 360) * 30);
+
+            //console.log(Now);
+            if (Now.isPlaying) {
+                Now.hour += Now.speed;
+                Now.moonElong += Now.speed * moonElong_per_hour; //= 360/30/24*dHr
+            }
+        }
+
+        var play_btn = {
+            showPlay: function() {
+                s('play_icon').removeClass('fa-pause');
+                s('play_icon').addClass('fa-play');
+            },
+            showPause: function() {
+                s('play_icon').removeClass('fa-play');
+                s('play_icon').addClass('fa-pause');
+            },
+            init: function() {
+                this.showPause();
+                s('play_btn').on('click', function() {
+                    if (Now.isPlaying) {
+                        Now.pause();
+                    } else {
+                        Now.play();
+                    }
+                }.bind(this))
+            }
+        }
+        play_btn.init();
+
+        var lock_btn = {
+            showLock: function() {
+                s('lock_icon').removeClass('fa-unlock-alt');
+                s('lock_icon').addClass('fa-lock');
+            },
+            showUnlock: function() {
+                s('lock_icon').removeClass('fa-lock');
+                s('lock_icon').addClass('fa-unlock-alt');
+            },
+            init: function() {
+                this.showUnlock();
+                s('lock_btn').on('click', function() {
+                    if (Now.isLocked) {
+                        Now.unlock();
+                        console.log('unlocking')
+                    } else {
+                        Now.lock();
+                        console.log('locking')
+                    }
+                }.bind(this))
+            }
+        }
+        lock_btn.init();
+
+        var speedCtrl = {
+            init: function() {
+                q('speed_sld').value = (Now.speed / 0.8) * 100;
+                s('speed_sld').on('input', function() {
+                    event.preventDefault();
+                    if (!Now.isPlaying)
+                        Now.play();
+                    let speed = (q('speed_sld').value / 100) * 0.8;
+                    Now.speed = speed;
+                });
+            }
+        }
+        speedCtrl.init();
+
+
+        //---------------------------------------------------------SVG-------------------------------------------//
+        var draw1 = SVG('#svg1').size(600, 450);
+        //draw1.viewbox(0, 0, draw1.width() / draw1.height() * 420, 420)
+        var space1 = {
+            init: function() {
+                this.grad = draw1.gradient('linear', function(add) {
+                    add.stop(0, '#2f2b3a', 1);
+                    add.stop(1.0, '#442931', 1);
+                }).from(0, 0).to(1, 0);
+                this.instc = draw1.rect('100%', '100%').move(0, 0).fill(this.grad); //#3c3642
+            }
+        }
+        space1.init();
+
+        var midY1 = 0.47 * draw1.height();
+        var sun1 = {
+            r: 230,
+            x: 775,
+            y: midY1,
+            init: function() {
+                this.shineGrad = draw1.gradient('radial', function(add) {
+                    add.stop(0, '#fffcf8', 1);
+                    add.stop(0.45, '#fff2e9', 0.9);
+                    add.stop(1, '#484054', 0);
+                })
+                this.shineGrad2 = draw1.gradient('radial', function(add) {
+                    add.stop(0, '#fc9b72', 1);
+                    add.stop(0.84, '#fad1c5', 0.88); //fff2e9
+                    add.stop(1, '#484054', 0);
+                })
+                this.shine = draw1.circle().radius(this.r * 1.45).center(this.x, this.y).fill(this.shineGrad); //.addClass('scaling');
+                this.shineInner = draw1.circle().radius(this.r * 1.16).center(this.x, this.y).fill(this.shineGrad2); //.addClass('scaling');
+                this.ball = draw1.circle().radius(this.r).center(this.x, this.y).fill('#ffe3c2'); //#ffe3c2 ffc87a
+            }
+        }
+        sun1.init();
+
+        var label1 = {
+            length: 46,
+            gapX: 0,
+            gapY: 8 + 10,
+            init: function() {
+                this.p1 = [earth1.x - this.length / 2, earth1.y - earth1.r];
+                this.p2 = [earth1.x + this.length / 2, earth1.y - earth1.r];
+                this.hrz = draw1.line(this.p1[0], this.p1[1], this.p2[0], this.p2[1])
+                    .stroke({
+                        color: '#919191',
+                        width: 1
+                    });
+                this.E = draw1.text('E').x(this.p1[0] - this.gapX).y(this.p1[1] - this.gapY).addClass('label1');
+                this.W = draw1.text('W').x(this.p2[0] + this.gapX).y(this.p2[1] - this.gapY).addClass('label1');
+
+                this.group = draw1.group().add(this.hrz).add(this.E).add(this.W);
+                this.group.rotate(-90, earth1.x, earth1.y); //เริ่มซ้าย
+            }
+        }
+
+        var shadGrad = draw1.gradient('linear', function(add) {
+            add.stop(0, '#3c3642', 0);
+            add.stop(0.24, '#1a181f', 0.10);
+            add.stop(1, '#100f12', 0.63);
+        }).from(0, 0).to(1, 0);
+        var earth1 = {
+            x: 0.40 * draw1.width(),
+            y: midY1, //draw1.height() / 2,
+            r: 36,
+            init: function() {
+                let side = this.r * 2;
+
+                this.shad = draw1.rect(1.25 * side, side).fill(shadGrad)
+                this.shad.center(this.x - this.shad.width() / 2, this.y);
+
+                label1.init();
+
+                let guy_url = 'https://lh3.googleusercontent.com/fife/AAWUweUwQ0mfsnOUdjl7oKyx39L2sxVAvD-DW3YBQBnML3WWZcLd0ifCnnfPFE4qc68nK35yDc6USi3LLRdUxU4eOF66uxuW-szK6gb-s-vJLsQn0W8ItTU4e8YlOPuAYg5Q57OMBH5AaqF1CXcH-CVVFHsJSchqxpzZcQdgk5MwTrY0VkWmIw1i6xNcpaWpV0koYgvH46CL57Fu_PMSV7aROL6aQvBXPF5f3D1SfikXNuR-_m3xQEy578a79bnLbr1efEmj5QhabOdfyEytM3g9zqop0fMX3n-h-GMnUxOLczAT82tUCixzhSfZDFEeopDpoF-zXwFw2ERMuORn1eIdCh88J1pzrdjKmwbXYQCcEozfjwJ7IM4Knb6dByC2IhHvP1vzrCFaAalBCnu8PotELtQAniGL8yOJIJI-w8QgKHhFgGFtA0ge6RU7_G8FxHcXVIq-DowhDcCXd_lUkmbSZlBY2nN2tqjkbjwWVCMl_MgmoCkkHZ9XADkD4c3hdNuV3fByjfP6WFzAK6AvmfdmeuMlPU6yHvLB0MtkUj6zp0bW5Z1sLGNa1P-LUyD1pGDoKaShSVgeUAMdH5UjS-HIazUb-rD6MijCG2cB06yWYB-TRm-4rmJqw_A1XCzmxbquE7FfOAd6lBX6FmuD8DoHaN98Ao_DoWsNU_Bhm4vzyConWO9FjM4T64BEYOg3-zb-HlmPF8uC1KrTUQVerus7jgAvOEZC5WSmZQ=w1920-h942-ft';
+                this.guy = draw1.image(guy_url).size(8, 23).center(this.x, this.y - 42) // 'a_human.png'
+                    .rotate(-90, this.x, this.y); // ต.น. เริ่มต้น 00 น.
+
+                let earth_url = 'https://lh3.googleusercontent.com/fife/AAWUweWLzNhMcbTZEUTrFbannzRs_A6mzW2AodV0vta4Ef_SGIIDI-fBO3yKGO6Bk775wTIcShUPnh-SHyeCT-KuIXALVphBiKfmDW9y2vu_UwVbP_IEASHHPobbeUtn9O3ldvOcKq6soFyR39bJ5HD2UoTzXLbSmXT1bMCgGAVOteNW4omeIkP5Wk9c7rMEH87urwO72YjGML6m2jhynhuQh8Ob2wunrUT1gr5GWHS15pdJUK8V_vtaIbWuOLiNzUtCNNaHDs3ypsZW2kitsFiLQNKRWsz08tvw9GjFuc7i9qcZrUfhQaLKQGsrxVVca1hJgxcWBincliUi9in_0f-OXI7_DLFTF0DF7IrWm9Qjhd6vJIxDDs94USE7TUsB4ssIkxvCsiesHIfC3jfv--08ikrzANwkgF_ZNGPuhUX9FPjOLOECg-lw1SUlJJxAJ4E28tFVBFM5BWV7fhmX1VsoBPcndm609XDO1mUwdJwCDHdjTW7N87Xdj3ZxukMwAiLp6C0w2Mkr6vKdau_SOJtn0dCb4pDJUUH3JZorUh95ZvO1hiNW3knH7Hah7C8PqySabQX8RK5XTFgypqwvDdTqCr1j4FGEyC82OKKB9N9iZtucHgYUkmlmCV88XC_SrdMkEdSYUO1gitWWl_ZyhkkT8oDEynKgHZHwkIk4gasT_HNSmzYuugKPWnu12849EROmh0JGZ9MCZ1G_ZgFlGg8Ek8yNPLdkURCAOQ=w1920-h942-ft';
+                this.img = draw1.image(earth_url).size(side, side).center(this.x, this.y) // 'N_Earth-_3.png'
+                    .rotate(-90);
+                this.body_g = draw1.group().add(this.guy).add(this.img).add(label1.group);
+
+                this.dark = draw1.path([
+                    ['M', this.x, this.y - this.r],
+                    ['A', this.r, this.r, 0, 0, 0, this.x, this.y + this.r], // rx ry rotate flag flag x2 y2
+                    ['Z']
+                ]).fill('#000000').opacity(0.25);
+
+                this.ball = draw1.circle().radius(this.r).center(this.x, this.y).opacity(0).attr('id', 'earth1_ball');
+
+            },
+            setHour: function(hour) {
+                let ang = (-15) * hour;
+                this.body_g.transform({
+                    rotate: ang,
+                    origin: [this.x, this.y]
+                });
+            }
+
+        };
+        earth1.init();
+        earth1.dragging = new Draggable(earth1.ball.node, draw1.node, function(MX, MY) {
+            var mouseDeg = xy2polar(MX, MY, earth1.x, earth1.y, reverseY = true).deg
+            if (MX == earth1.x && MY == earth1.y)
+                return
+            Now.pause();
+            var new_hour = degForm(mouseDeg + 180) / 15;
+            if (Now.isLocked) {
+                var old_hour = Now.hour;
+                var d_hour = round24(new_hour - old_hour);
+                if (d_hour > 12) // ปรับให้อยู๋ในช่วง -12, 12
+                    d_hour -= 24;
+                Now.moonElong += d_hour * moonElong_per_hour; // = (H/24)*360/30 = 0.5moonDeg per hour
+                Now.moonElong = roundWithin(Now.moonElong, 360);
+                //console.log(mouseDeg, old_hour, new_hour, d_hour)
+            }
+            Now.hour = new_hour;
+        });
+        earth1.dragging_guy = new Draggable(earth1.guy.node, draw1.node, earth1.dragging.whenDragged);
+
+        var orbit1 = {
+            r: 158,
+            init: function() {
+                this.instc = draw1.circle().radius(this.r).center(earth1.x, earth1.y).fill('none').stroke({
+                    color: '#827894',
+                    opacity: 0.4,
+                    width: 2,
+                    dasharray: [12, 7]
+                });
+            }
+        }
+        orbit1.init();
+
+        var moon1 = {
+            r: 27,
+            x: earth1.x,
+            y: earth1.y,
+            init: function() {
+                let side = 2 * this.r;
+                this.shad = draw1.rect(1.3 * side, side).fill(shadGrad);
+                this.shad.center(this.x - this.shad.width() / 2, this.y);
+                this.darkSide = draw1.path([
+                    ['M', this.x, this.y - this.r],
+                    ['A', this.r, this.r, 0, 0, 0, this.x, this.y + this.r],
+                    ['Z']
+                ]).fill('#a19b8c');
+                this.lightSide = draw1.path([
+                    ['M', this.x, this.y - this.r],
+                    ['A', this.r, this.r, 0, 0, 1, this.x, this.y + this.r],
+                    ['Z']
+                ]).fill('#f2f1df');
+                this.ball = draw1.circle().radius(this.r).center(this.x, this.y).opacity(0).attr('id', 'moon1_ball');
+
+                this.group = draw1.group().add(this.shad).add(this.darkSide).add(this.lightSide).add(this.ball);
+                //this.setElong(0);
+            },
+            setElong: function(deg) {
+                let vec = polar2xy(orbit1.r, deg, 0, 0, true);
+                this.group.transform({
+                    translate: vec //{x: --, y: --}
+                })
+                pointer1.setPos(deg);
+            }
+        }
+        moon1.init();
+        moon1.dragging = new Draggable(moon1.ball.node, draw1.node, function(MX, MY) {
+            if (MX == earth1.x && MY == earth1.y)
+                return
+            var new_moonElong = xy2polar(MX, MY, earth1.x, earth1.y, reverseY = true).deg //เท่า mouseDeg เพราะนับจากขวา ทวน
+            Now.pause();
+            if (Now.isLocked) {
+                var old_moonElong = Now.moonElong;
+                var d_elong = new_moonElong - old_moonElong;
+                Now.hour += d_elong / moonElong_per_hour; // = moonDeg*(30/360)*24 = 2hr per moonDeg
+            }
+            Now.moonElong = new_moonElong;
+        });
+
+        var pointer1 = {
+            width: 1.4 * moon1.r,
+            gap: 0.4 * moon1.r,
+            color: '#826d78',
+            thick: 1.6,
+            init: function() {
+                this.p1 = { //left point
+                    x: earth1.x + orbit1.r - this.width,
+                    y: earth1.y
+                }
+                this.p2 = { //right point
+                    x: earth1.x + orbit1.r - this.gap,
+                    y: earth1.y
+                }
+                this.part1 = draw1.path([
+                    ['M', this.p2.x, earth1.y - moon1.r],
+                    ['L', this.p1.x, earth1.y - moon1.r],
+                    ['L', this.p1.x, earth1.y + moon1.r],
+                    ['L', this.p2.x, earth1.y + moon1.r]
+                ]).fill('none').stroke({
+                    color: this.color,
+                    width: this.thick
+                });
+                this.part2 = draw1.path([
+                    ['M', this.p1.x, this.p1.y],
+                    ['L', earth1.x, earth1.y]
+                ]).fill('none').stroke({
+                    color: this.color,
+                    width: this.thick
+                });
+
+                this.group = draw1.group().add(this.part1).add(this.part2);
+                this.group.insertBefore(earth1.shad); //ย้ายไปหลังสุด
+            },
+            setPos: function(deg) {
+                this.group.transform({
+                    rotate: -deg,
+                    origin: [earth1.x, earth1.y]
+                })
+            }
+        }
+        pointer1.init();
+        moon1.setElong(0);
+
+        //----------------------------------------------SVG2----------------------------------------------------//
+        //------------------------------------------------------------------------------------------------------//
+        draw2 = SVG('#svg2').size(500, 450);
+
+        var sky2 = {
+            stopValues: {
+                day: ['#709ab7', '#cee8ef', '#97c6c4'], //day --from top to bottom
+                night: ['#2B3747', '#4C383C', '#3B363D'], //night
+                twilight: ['#417E99', '#E5B691', '#998476'] //twilight
+            },
+            init: function() {
+                this.grad = draw2.gradient('linear', function(add) {
+                    add.stop(0, '#5c818b', 1);
+                    add.stop(0.75, '#a9c9c6', 1);
+                }).from(0, 0).to(0, 1);
+
+                this.instc = draw2.rect('100%', '100%').move(0, 0).fill(this.grad);
+
+                this.timeColor_arr = [
+                    //[0, this.stopValues.night],
+                    [defT.dawn1, this.stopValues.night],
+                    [6, this.stopValues.twilight],
+                    [defT.dawn2, this.stopValues.day],
+                    [defT.dusk1, this.stopValues.day],
+                    [18, this.stopValues.twilight],
+                    [defT.dusk2, this.stopValues.night]
+                    //[24, this.stopValues.night]
+                ];
+                this.scale24 = new ScaleColorArrs_byTime(this.timeColor_arr);
+            },
+            updateGrad: function(stopColor_arr) { // รับ arr บอก stops ๓ ค่า
+                this.grad.update(function(add) {
+                    add.stop(0.0, stopColor_arr[0], 1.0);
+                    add.stop(0.6, stopColor_arr[1], 1.0);
+                    add.stop(1.0, stopColor_arr[2], 1.0);
+                });
+            },
+            getStops_atTime: function(timeHour) {
+                return this.scale24.getColorsAtTime(timeHour)
+            },
+            updateColorAtTime: function(timeHour) {
+                this.updateGrad(this.getStops_atTime(timeHour));
+            }
+        };
+        sky2.init();
+
+
+        var cp2 = {
+            x: draw2.width() / 2,
+            y: draw2.height() / 2
+        };
+        var orbit2 = {
+            r: 164,
+            init: function() {
+                this.inst = draw2.circle().radius(this.r).center(cp2.x, cp2.y).fill('none').stroke({
+                    color: '#fdffff',
+                    opacity: 0.28,
+                    width: 2,
+                    dasharray: [12, 6]
+                });
+            }
+        }
+        orbit2.init();
+
+        var sunshineGrad = draw2.gradient('radial', function(add) {
+            add.stop(0, '#ffe7bd', 0.72);
+            add.stop(1, '#ffffff', 0);
+        })
+        var sun2 = {
+            colorVal: {
+                day: ['#FDF7F1'],
+                night: ['F9CEBB']
+            },
+            r: 22,
+            orbitR: orbit2.r,
+            init: function() {
+                this.shine = draw2.circle().radius(this.r * 2).center(cp2.x, cp2.y + this.orbitR).fill(sunshineGrad);
+                this.ball = draw2.circle().radius(this.r).center(cp2.x, cp2.y + this.orbitR).fill('#FFF9DA');
+
+                this.group = draw2.group().add(this.shine).add(this.ball);
+
+                this.scale24 = new ScaleColorArrs_byTime([
+                    //[0, this.colorVal.night],
+                    [defT.dawn1, this.colorVal.night],
+                    [defT.dawn2, this.colorVal.day],
+                    [defT.dusk1, this.colorVal.day],
+                    [defT.dusk2, this.colorVal.night]
+                    //[24, this.colorVal.night]
+                ]);
+            },
+            setHour: function(hour) {
+                this.group.transform({
+                    rotate: -hour * 15,
+                    origin: [cp2.x, cp2.y]
+                })
+            },
+            updateColorAtTime: function(hour) {
+                this.ball.fill(this.scale24.getColorsAtTime(hour)[0]);
+            }
+        };
+        sun2.init();
+        sun2.dragging = new Draggable(sun2.ball.node, draw2.node, function(MX, MY) {
+            var expectedSunDeg = xy2polar(MX, MY, cp2.x, cp2.y, reverseY = true).deg + 90; //นับจากล่าง
+            if (MX == cp2.x && MY == cp2.y)
+                return
+            Now.pause();
+            var new_hour = degForm(expectedSunDeg) / 15;
+            if (Now.isLocked) {
+                var old_hour = Now.hour;
+                var d_hour = roundWithinSide(new_hour - old_hour, 24);
+                Now.moonElong += d_hour * moonElong_per_hour; // = (H/24)*360/30 = 0.5moonDeg per hour
+                Now.moonElong = roundWithin(Now.moonElong, 360);
+                //console.log(mouseDeg, old_hour, new_hour, d_hour)
+            }
+            Now.hour = new_hour;
+        })
+
+
+        lightColor = "#EFD9B4";
+        darkColor = "#2B3332";
+        class Moon {
+            constructor(x, y, r, age, rotate = 0, draw = draw) {
+                //this.cir = draw.circle().radius(r).center(x, y).fill(darkColor)
+                this.x = x;
+                this.y = y;
+                this.r = r;
+                this.rotate = rotate;
+
+                this.age = age % 30;
+                this.elong = age * 360 / 30;
+
+                this.lightColor = lightColor;
+                this.darkColor = darkColor;
+
+                this.backBall = draw.circle().center(this.x, this.y).radius(this.r).opacity(0);
+
+                this.lightPath = draw.path().fill(this.lightColor);
+                this.darkPath = draw.path().fill(this.darkColor);
+                this.setElong(this.elong);
+
+                this.ball = draw.circle().center(this.x, this.y).radius(this.r).opacity(0);
+
+                this.group = draw.group().add(this.backBall).add(this.lightPath).add(this.darkPath).add(this.ball);
+                this.group.transform({
+                    rotate: rotate,
+                    origin: [x, y]
+                })
+            }
+            setAge(age) {
+                this.age = roundWithin(age, 30);
+                this.elong = this.age * 12;
+                this.updatePath();
+            }
+            setElong(deg) {
+                this.elong = roundWithin(deg, 360);
+                this.age = this.elong / 12;
+                this.updatePath();
+            }
+            setPos(x, y) {
+                this.x = x;
+                this.y = y;
+                this.updatePath();
+
+            }
+            updatePath() {
+                var x = this.x;
+                var y = this.y;
+                var r = this.r;
+
+                var shadX = Math.cos(this.elong * rad); //calculate ellipse minor axis
+
+                if (this.age <= 15) {
+                    var light_cw = 1; //light at left side?
+                    var dark_cw = 0; //dark at right side						
+                } else if (this.age > 15) {
+                    var light_cw = 0;
+                    var dark_cw = 1;
+                    shadX = -shadX; // for another side of shadow seen
+                }
+
+                var sweep_cw = 0; //sweep CW for ellipse path with negative X
+                if (shadX < 0)
+                    sweep_cw = 1;
+
+                //A rx ry x-axis-rotation large-arc-flag sweep-flag x y
+                var lightPathArr = [
+                    ['M', x, y + r],
+                    ['A', r, r, 0, 0, light_cw, x, y - r],
+                    ['A', shadX * r, r, 0, 0, sweep_cw, x, y + r],
+                    ['z']
+                ];
+                this.lightPath.plot(lightPathArr); // update patht
+
+                var darkPathArr = [
+                    ['M', x, y + r],
+                    ['A', r, r, 0, 0, dark_cw, x, y - r],
+                    ['A', shadX * r, r, 0, 0, sweep_cw, x, y + r],
+                    ['z']
+                ];
+                this.darkPath.plot(darkPathArr);
+            }
+            setColor(lightClr, darkClr) {
+                this.lightColor = lightClr;
+                this.darkColor = darkClr;
+                this.lightPath.fill(this.lightColor);
+                this.darkPath.fill(this.darkColor);
+            }
+        }
+
+        var moon2 = {
+            r: 21,
+            orbitR: orbit2.r,
+            init: function() {
+                this.moon = new Moon(cp2.x, cp2.y - this.orbitR, this.r, 0, 0, draw2);
+                this.moon.setColor('#f7e4c6', '#000000');
+                this.moon.backBall.opacity(1.0); //ให้จางสีด้านมืดตามฟ้า
+                this.moon.darkPath.opacity(0.34);
+
+                this.posAng = 0;
+
+                this.updateFrom_elongAndHour(0, 0);
+            },
+            setPos: function(deg) { //จาก ต.น. ล่างสุด ทวนเข็ม
+                this.posAng = deg;
+                this.moon.group.transform({
+                    rotate: -deg + 180, //เริ่มที่ 180 ไปล่าง
+                    origin: [cp2.x, cp2.y]
+                })
+            },
+            updateFrom_elongAndHour: function(elong, hour) {
+                let pos = 15 * hour - elong;
+                let age = elong / 12;
+                this.setPos(pos);
+                this.moon.setAge(age);
+            },
+            update_backBallColor: function() {
+                let stopToGet = sky2.grad.get(1);
+                let color = stopToGet.node.getAttribute('stop-color');
+                this.moon.backBall.fill(color);
+            }
+        }
+        moon2.init();
+        //moon2.moon.setColor('#EFD9B4', '#2B333287');
+        moon2.dragging = new Draggable(moon2.moon.ball.node, draw2.node, function(MX, MY) {
+            if (MX == cp2.x && MY == cp2.y)
+                return
+            Now.pause();
+            var oldMoonPos = 15 * round24(Now.hour) - degForm(Now.moonElong);
+            var expectedMoonPos = xy2polar(MX, MY, cp2.x, cp2.y, reverseY = true).deg + 90; //นับองศาจากล่าง
+            var d_moonPos = expectedMoonPos - oldMoonPos;
+            d_moonPos = roundWithinSide(d_moonPos, 360);
+
+            if (!Now.isLocked) {
+                Now.moonElong += -d_moonPos;
+                Now.moonElong = roundWithin(Now.moonElong, 360);
+                //console.log(Now.moonElong);
+            } else if (Now.isLocked) {
+                let d_hour = d_moonPos / (15 - 0.5); // because d_moonPos = 15d_H - d_elong, d_elong = 0.5*d_H
+                d_hour = roundWithinSide(d_hour, 24);
+                Now.hour += d_hour;
+                Now.moonElong += 0.5 * d_hour;
+            }
+
+        })
+
+
+        var land2 = {
+            defStops: {
+                day: ['#76b2a6', '#93BAAF', '#f0fcff'], //day --from top to bottom
+                night: ['#312838', '#1b1921', '#4f3a44'], //night
+                twilight: ['#57616B', '#535466', '#555468'] //twilight
+            },
+            init: function() {
+                this.grad = draw2.gradient('linear', function(add) {
+                    add.stop(0, '#609389', 0.52);
+                    add.stop(0.6, '#87ada5', 0.1);
+                    add.stop(0.7, '#b6ccc8', 0.0);
+                }).from(0, 0).to(0, 1);
+
+                this.instc = draw2.rect('100%', '50%').move(0, '50%').fill(this.grad);
+                this.instc.attr('pointer-events', 'none');
+
+                this.timeColor_arr = [
+                    //[0, this.defStops.night],
+                    [defT.dawn1, this.defStops.night],
+                    [6, this.defStops.twilight],
+                    [defT.dawn2, this.defStops.day],
+                    [defT.dusk1, this.defStops.day],
+                    [18, this.defStops.twilight],
+                    [defT.dusk2, this.defStops.night],
+                    //[24, this.defStops.night]
+                ];
+                this.scale24 = new ScaleColorArrs_byTime(this.timeColor_arr);
+            },
+            updateGrad: function(stopColor_arr) { // รับ arr บอก stops ๓ ค่า
+                this.grad.update(function(add) {
+                    add.stop(0.0, stopColor_arr[0], 0.70);
+                    add.stop(0.6, stopColor_arr[1], 0.10);
+                    add.stop(1.0, stopColor_arr[2], 0.00);
+                });
+            },
+            updateColorAtTime: function(timeHour) {
+                this.updateGrad(this.scale24.getColorsAtTime(timeHour));
+            }
+        }
+        land2.init();
+
+        var label2 = {
+            r: 0.86 * draw2.width() / 2,
+            gap: 4,
+            init: function() {
+                this.E = draw2.text('EAST').x(cp2.x + this.r).y(cp2.y + this.gap).addClass('label2');
+                this.W = draw2.text('WEST').x(cp2.x - this.r).y(cp2.y + this.gap).addClass('label2');
+            }
+        }
+        label2.init();
+
+
+        //-----------------------------------------  svg3 for status showing -----------------------------------------------------//
+        //-----------------------------------------------------------------------------------------------------------------------/-/
+
+        var draw3 = SVG('#svg3').size(236, 25);
+
+        var clockSymb = {
+            x: 22,
+            y: draw3.height() / 2,
+            r: 11.5,
+            init: function() {
+                this.clock = new Clock(this.x, this.y, this.r, 1.6, draw3, '#161616');
+            }
+        }
+        clockSymb.init();
+
+        var clockLabel = {
+            x: 40,
+            y: draw3.height() / 2 - 11,
+            init: function() {
+                this.label = draw3.text('00 : 00').move(this.x, this.y).addClass('label3');
+            },
+            setTime: function(hour) {
+                this.label.text(clockFormat(hour));
+            }
+        }
+        clockLabel.init();
+
+        var moonIcon3 = {
+            x: 131,
+            y: draw3.height() / 2,
+            r: 11.5,
+            init: function() {
+                this.moon = new Moon(this.x, this.y, this.r, 0, 0, draw3);
+                this.moon.setColor('#ffffff00', '#161616');
+                this.moon.ball.opacity(1.0).fill('none').stroke({
+                    color: '#161616',
+                    width: 1.6
+                });
+            }
+        }
+        moonIcon3.init();
+
+        var khamLabel = {
+            x: 149,
+            y: draw3.height() / 2 - 12,
+            init() {
+                this.label = draw3.text('แรม 15 ค่ำ').move(this.x, this.y).addClass('label3');
+            },
+            setAge: function(age) {
+                this.label.text(ageToKham(age));
+            }
+        }
+        khamLabel.init();
+    </script>
+</body>
+
+</html>

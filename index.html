@@ -1,128 +1,143 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Krub&family=Open+Sans&family=Sarabun:wght@300&display=swap&family=Prompt:wght@300&display=swap" rel="stylesheet">
-		<title>lyDevper</title>
-		
-		<style>		
-			body{
-				margin: 0;
-			}
-			p,h3,a{
-				margin-top: 12px;
-				margin-bottom: 12px;
-			}
-			#headBan{
-				background: #534e63;														
 
-				position: relative;
-				
-				padding-top: 16px;
-				padding-bottom: 16px;
-				padding-left: 14px;										
-				
-			}
-			#headBox{
-				background: #302a38;
-				position: relative;				
-				padding: 8px 40px 8px 27px;
-				width: 70vw;
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&family=Krub&family=Open+Sans&family=Sarabun:wght@300&display=swap&family=Prompt:wght@300&display=swap" rel="stylesheet">
+    <title>lyDevper</title>
 
-				border-radius: 36px;
-				box-shadow: 0 7px 9px 0 rgba(0,0,0,0.27);
-			}
-			#headText{
-				font-family: 'Prompt', sans-serif;
-				font-size: 20pt;
-				color: white;
-				
-				position: relative;
-				margin: 0 0 0 0 ;				
-				
-			}
-			@media only screen and (max-width: 500px) {
-				#headText{
-					font-size: 20px;					
-				}
-				#headBox{
-					padding: 8px 25px 8px 25px;
-					border-radius: 24px;
-				}
-				#headBan{
-					padding-right: 14px
-				}
-			}
-			
-			#content{
-				padding: 12px;
-				padding-top: 3px;
-				margin: 5px;
-				font-family: 'Prompt', sans-serif;
-			}
-			#menuList{
-				padding-top: 1px;
-			}
-			.card{
-				box-shadow: 0px 2px 8px 1px rgba(0,0,0,0.22);
-				transition: 0.2s;
-				
-				border-radius: 5px;
-				padding: 12px 20px; 
-				margin: 14px 8px;
-				background-color: #fafafa;
-								
-			}				
-			.card:hover {
-				box-shadow: 0 2px 10px 2px rgba(0,0,0,0.22);
-				background-color: #fefefe;
-				cursor: pointer;
-			}
-			a{
-				color: black;
-				
-			}
-			
-			
-			.foot{
-				position: absolute;
-				bottom: 12px;		
-				right: 18px;
-				margin: 0;
-				color: #a6a6a6;				
-			}
-			#foot-p{
-				margin:0;
-			}
-			
-		</style>
-	</head>	
-	<body>
-		<div id="headBan">
-			<div id="headBox">
-				<h2 id="headText">Welcome to Index!!!</h2>	
-			</div>
-		</div>
-		
-		<div id="content">
-			<h3>Nothing's Here! Just index page...</h3>			
-			<div id="menuList">
-				<a href="/autumnLeaves"> <div class="card">Go to see autumn leaves >></div> </a>
-				<a href="/vobvab"> <div class="card">Go to Mobmab Vobvab card stunt generator >></div> </a>
-				<a href="/moonphaseGen"> <div class="card">Go to moonphase generator >></div> </a>
-			</div>
-		</div>
-	
-		<div class="foot">
-			<p align="right" id="foot-p">lyDevper</p>
-		</div>
-	</body>
-	
-	<script>
-		var q = (idName) => document.getElementById(idName);
-		// -_-
-	</script>
-	
-	
+    <style>
+        body {
+            margin: 0;
+        }
+        
+        p,
+        h3,
+        a {
+            margin-top: 12px;
+            margin-bottom: 12px;
+        }
+        
+        #headBan {
+            background: #534e63;
+            position: relative;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            padding-left: 14px;
+        }
+        
+        #headBox {
+            background: #302a38;
+            position: relative;
+            padding: 8px 40px 8px 27px;
+            width: 70vw;
+            border-radius: 36px;
+            box-shadow: 0 7px 9px 0 rgba(0, 0, 0, 0.27);
+        }
+        
+        #headText {
+            font-family: 'Prompt', sans-serif;
+            font-size: 20pt;
+            color: white;
+            position: relative;
+            margin: 0 0 0 0;
+        }
+        
+        #content {
+            padding: 12px;
+            padding-top: 3px;
+            margin: 5px;
+            font-family: 'Prompt', sans-serif;
+        }
+        
+        #menuList {
+            padding-top: 1px;
+        }
+        
+        .card {
+            box-shadow: 0px 2px 8px 1px rgba(0, 0, 0, 0.22);
+            transition: 0.2s;
+            border-radius: 5px;
+            padding: 18px 24px;
+            margin: 14px 8px;
+            background-color: #fafafa;
+        }
+        
+        .card:hover {
+            box-shadow: 0 2px 10px 2px rgba(0, 0, 0, 0.22);
+            background-color: #fefefe;
+            cursor: pointer;
+        }
+        
+        a {
+            color: black;
+        }
+        
+        .foot {
+            position: absolute;
+            bottom: 12px;
+            right: 18px;
+            margin: 0;
+            color: #a6a6a6;
+        }
+        
+        #foot-p {
+            margin: 0;
+        }
+        
+        @media only screen and (max-width: 600px) {
+            #headText {
+                font-size: 20px;
+            }
+            #headBox {
+                padding: 8px 25px 8px 25px;
+                border-radius: 24px;
+            }
+            #headBan {
+                padding-right: 14px
+            }
+            .card {
+                padding: 10px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="headBan">
+        <div id="headBox">
+            <h2 id="headText">Welcome to Index!!!</h2>
+        </div>
+    </div>
+
+    <div id="content">
+        <h3>Nothing's Here! Just index page...</h3>
+        <div id="menuList">
+            <a href="/autumnLeaves">
+                <div class="card">Go to see autumn leaves >></div>
+            </a>
+            <a href="/vobvab">
+                <div class="card">Go to Mobmab Vobvab card stunt generator >></div>
+            </a>
+            <a href="/moonphaseGen">
+                <div class="card">Go to moonphase generator >></div>
+            </a>
+            <a href="/sunMoonSim">
+                <div class="card">Go to Sun and Moon simulator >></div>
+            </a>
+        </div>
+    </div>
+
+    <div class="foot">
+        <p align="right" id="foot-p">lyDevper</p>
+    </div>
+</body>
+
+<script>
+    var q = (idName) => document.getElementById(idName);
+    // -_-
+</script>
+
+
 </html>
