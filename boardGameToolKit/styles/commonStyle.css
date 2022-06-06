@@ -1,0 +1,70 @@
+.cardBox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;    
+    margin: 20px 0;
+
+    background: #37383E;
+    border: 3px solid #3382DE;
+    box-shadow: 0px 1px 16px 2px rgba(0, 0, 0, 0.77);
+    border-radius: 5px;
+    
+    color: #ffffff;
+}
+
+.cardTitleDiv {
+    margin: 0;
+    padding: 12px 24px;
+    background: #3382DE;
+    border-radius: 5px 5px 0px 0px;
+
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.cardContentDiv {
+    box-sizing: border-box;
+    padding: 16px 12px;
+}
+
+.centerDiv {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.columnDiv {
+    display: flex;
+    width: 50%;
+    align-items: center;
+    flex-direction: column;    
+}
+
+/*----------------------------------------*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+button {
+    border: none;
+}
+button:hover {
+    cursor: pointer;
+}
+/*
+input[type="time"]::-webkit-calendar-picker-indicator {
+    color: white;
+}
+*/
+input[type="time"]:active {
+    outline: none;
+}

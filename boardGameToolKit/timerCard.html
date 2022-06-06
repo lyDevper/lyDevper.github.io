@@ -1,0 +1,22 @@
+<!--<link rel="stylesheet" href="styles/commonStyle.css">-->
+<link rel="stylesheet" href="styles/timerCard.css">
+
+<div class="cardBox timerCard">
+    <div class="cardTitleDiv timerTitle">TIMER</div>
+    <div class="centerDiv cardContentDiv timerContent">
+        <div class="columnDiv timerBtnPane">
+            <button id="timerStartBtn" class="timerBtn1" onclick="TimerCard.startBtnHandler()">Start</button>
+            <button id="timerResetBtn" class="timerBtn1" onclick="TimerCard.resetBtnHandler()">Reset</button>
+        </div>
+        <div class="columnDiv timerClockPane">
+            <div id="timerClockCtn" class="timerClockCtn">
+                <svg id="timerClockSvg"></svg>
+                <input type="time" step="1" value="00:00:10" id="timerInput" onchange="TimerCard.inputChangedHandler()">
+            </div>
+        </div>
+    </div>       
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.1.2/svg.min.js" integrity="sha512-I+rKw3hArzZIHzrkdELbKqrXfkSvw/h0lW/GgB8FThaBVz2e5ZUlSW8kY8v3q6wq37eybIwyufkEZxe4qSlGcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="clock.js"></script>
+<script src="timerCard.js"></script>

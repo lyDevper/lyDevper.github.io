@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="styles/moneyCounterCard.css">
+
+<template id="coin-template">
+    <button class="coinBtn" data-value="{value}" onclick="coinBtnHandler(this)">{value}</button>
+</template>
+
+<template id="record-template">
+    <div class="counterItem" data-item-id="{itemId}" onclick="itemClickHandler(this)">
+        <input type="text" class="counterItemName inp2" value="{name}" data-item-id="{itemId}" onchange="itemNameChangedHandler(this)">
+        <input type="number" class="counterItemValue inp2" value="{value}" data-item-id="{itemId}" onchange="itemValueChangedHandler(this)">
+        <button class="counterDeleteBtn" data-item-id="{itemId}" onclick="deleteItemHandler(this)">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+</template>
+
+<div class="cardBox counterCard" id="moneyCounterBox">
+    <div class="cardTitleDiv counterTitle">MONEY/SCORE COUNTER</div>
+    <div class="centerDiv cardContentDiv counterContent">
+        <div id="coins" class="coinsDiv">
+            <!--coins to be render-->
+        </div>
+        <div class="counterControllerDiv">
+            <button id="decreaseBtn" class="btnClass1" onclick="decreaseBtnHandler()">-</button>
+            <button id="increaseBtn" class="btnClass1" onclick="increaseBtnHandler()">+</button>    
+            <button id="setZeroBtn" class="btnClass1" onclick="setZeroBtnHandler()">Set 0</button>        
+        </div>        
+
+        <div id="counterRecords"></div>
+        <button class="counterAddBtn" onclick="addItemHandler(this)">Add</button>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>    
+    <script src="jqTemp.js"></script>
+    <script src="moneyCounterCard.js"></script>    
+</div>
+

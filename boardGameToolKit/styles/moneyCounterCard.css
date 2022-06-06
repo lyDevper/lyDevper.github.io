@@ -1,0 +1,194 @@
+.counterCard {
+    border-color: #17B3A0;
+}
+
+.counterTitle {
+    background-color: #17B3A0;
+}
+
+.counterContent {
+    flex-direction: column;
+    align-items: center;
+}
+/*--------------------------------------------------------*/
+.coinsDiv {
+    padding: 0 12px;
+}
+
+.coinBtn {
+    min-width: 32px;
+    height: 32px;
+    background: #666575;
+    box-shadow: 0px 1px 8px 1px rgba(0, 0, 0, 0.8);
+    border-radius: 30px;
+    border: none;
+
+    color: white;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular',  Verdana, sans-serif;
+    font-size: 11px;
+
+    padding: 0 10px;
+    margin: 8px 6px;
+
+    transition-duration: 0.06s;
+
+}
+.selectedCoin {
+    background: #F0EFF8;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.7);
+    color: black;
+    transform: translateY(2.0px);
+}
+
+.counterControllerDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 20px 20px 20px;
+}
+
+.btnClass1 {
+    box-shadow: 0px 1px 8px 1px rgba(0, 0, 0, 0.80);    
+    border: none;
+    transition-duration: 0.06s;
+}
+.btnClass1:active {
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.50);
+    transform: translateY(1.6px);    
+}
+
+#decreaseBtn {
+    background: #48A081;    
+    border-radius: 15px 2px 2px 15px;
+    margin: 0 1px;
+
+    width: 40px;
+    height: 30px;
+    color: white;
+    text-align: center;
+}
+
+#increaseBtn {
+    background: #48A081;
+    border-radius: 2px 15px 15px 2px;
+    margin: 0 1px;
+
+    width: 40px;
+    height: 30px;
+    color: white;
+    text-align: center;
+}
+
+#setZeroBtn {
+    background: #427160;
+    border-radius: 3px;
+
+    margin-left: 12px;
+    padding: 0 12px;
+    height: 30px;
+    color: white;
+}
+
+/*--------------------------------------------------------*/
+#counterRecords {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.counterItem {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+
+    justify-content: space-around;
+    padding: 15px 10px;
+    margin: 0px 0;
+
+    transition-duration: 0.05s;
+}
+.counterItem:hover {
+    cursor: pointer;    
+    
+}
+
+.selectedItem {
+    background-color: #4C4D59;    
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.45);
+}
+
+.inp2 {
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 5px;
+
+    background: none;
+    border: none;
+    border-bottom: 2px solid #ffffff74;
+
+    font-family: 'Lucida Sans', Verdana, sans-serif;
+    font-size: 14px;
+    color: #e7e7e7;
+
+    transition-duration: 0.24s;
+}
+.inp2:focus {
+    outline: none;
+    border-bottom-color: #ffffffe5;
+}
+
+.counterItemName {
+    width: 50%;
+    
+}
+
+.counterItemValue {
+    width: 20%;
+    text-align: end;
+}
+
+.counterDeleteBtn {
+    width: 6%;
+    padding: 0;
+    background: none;
+    border: none;
+
+    text-align: center;
+    font-size: 14px;
+    color: #e0e0e0d8;
+    transform: translateY(1px);
+
+    transition-duration: 0.08s;
+}
+.counterDeleteBtn:hover {
+    cursor: pointer;
+    color: #fbfbfb;
+    transform: scale(1.05);
+}
+
+.counterAddBtn {
+    background: #48A081;
+    box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    border: none;
+
+    padding: 8px 45px;
+    margin: 12px 0;
+    color: white;
+
+    transition-duration: 0.08s;
+}
+.counterAddBtn:hover {
+    background: #58b695;
+    
+}
+.counterAddBtn:active {
+    box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.6);
+    transform: translateY(2px);
+}

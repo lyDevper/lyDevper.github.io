@@ -1,0 +1,55 @@
+<!-- a random tool to random number in a specified range and show it-->
+<link rel="stylesheet" href="styles/commonStyle.css">
+<link rel="stylesheet" href="styles/randomCard.css">
+
+<div class="cardBox randomCard">
+    <div class="cardTitleDiv">DICE</div>
+    <div class="centerDiv cardContentDiv">
+        <div class="columnDiv inpNumDiv">
+            <div>
+                <a> From </a>
+                <input type="number" value="1" class="inpNum1" id="inpRanNum1">
+                <a> To </a>
+                <input type="number" value="6" class="inpNum1" id="inpRanNum2">
+            </div>            
+        </div>
+        <div class="columnDiv ranResultDiv">
+            <button id="resultLbl">0</button>
+            <button class="randomBtn" id="randomBtn">Random</button>            
+        </div>
+    </div>       
+</div>
+
+<script>
+    var q = (id) => document.getElementById(id);                
+    function ranAndShow() {
+        var ranNum1 = parseInt( q('inpRanNum1').value);
+        var ranNum2 = parseInt( q('inpRanNum2').value);
+
+        var result = Math.floor(Math.random() * (ranNum2 - ranNum1 + 1)) + ranNum1;            
+        q('resultLbl').innerHTML = result;
+
+        var startCol = '#ff3636';
+        var endCol = '#4d8eff';
+        var color = colrBetweenNum(startCol, endCol, ranNum1, ranNum2, result);
+        q('resultLbl').style.backgroundColor = color;
+
+        return result
+    }
+    ranAndShow();
+
+    function randDice() {
+        var i = 0;
+        var diceInterval =  setInterval(function(){
+            ranAndShow();
+            i++;
+            if(i > 20) {                
+                clearInterval(diceInterval);
+            }
+        }, 36);
+    }
+
+    q('randomBtn').addEventListener('click', randDice);
+    q('resultLbl').addEventListener('click', randDice);
+    
+</script>
