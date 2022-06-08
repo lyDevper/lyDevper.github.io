@@ -1,0 +1,21 @@
+<!--<link rel="stylesheet" href="styles/commonStyle.css">-->
+<link rel="stylesheet" href="styles/stopWatchCard.css">
+
+<div class="cardBox stopWatchCard">
+    <div class="cardTitleDiv sWatchTitle">STOPWATCH</div>
+    <div class="centerDiv cardContentDiv sWatchContent">
+        <div class="columnDiv sWatchBtnPane">
+            <button id="sWatchStartBtn" class="sWatchBtn1" onclick="SWatchCard.startBtnHandler()">Start</button>
+            <button id="sWatchResetBtn" class="sWatchBtn1" onclick="SWatchCard.resetBtnHandler()">Reset</button>
+        </div>
+        <div class="columnDiv sWatchClockPane">
+            <div id="sWatchClockCtn" class="sWatchClockCtn">
+                <svg id="sWatchClockSvg"></svg>
+                <a id="sWatchLbl">00:00:00</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="clock.js"></script>
+<script src="stopWatchCard.js"></script>

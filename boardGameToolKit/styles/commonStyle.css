@@ -26,6 +26,7 @@
 .cardContentDiv {
     box-sizing: border-box;
     padding: 16px 12px;
+    background-color: #37383e;
 }
 
 .centerDiv {

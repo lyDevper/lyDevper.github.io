@@ -74,6 +74,19 @@ class TimeDelta {
     return arr.join(':');
   }
 
+  //return format 'hh:mm:ss.ms', and make so that each value is 2 digits
+  toString2() {
+    let centiseconds = Math.floor(this.milliseconds / 10);
+    centiseconds = centiseconds.toString();
+    centiseconds = centiseconds.length == 1 ? '0' + centiseconds : centiseconds;
+  
+    let str = `${this.hours}:${this.minutes}:${this.seconds}:${centiseconds}`;
+    let arr = str.split(':');
+    for(let i = 0; i < arr.length; i++)
+      arr[i] = arr[i].length == 1 ? '0' + arr[i] : arr[i];
+    return arr.join(':');
+  }
+
   compute() {
     this.milliseconds = this.msValue;
     this.seconds = Math.floor(this.milliseconds / 1000);

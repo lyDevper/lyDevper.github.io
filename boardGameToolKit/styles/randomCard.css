@@ -1,5 +1,15 @@
 .randomCard {
     flex-direction: column;
+    border: 3px solid #3382DE;
+    background-color: #3382DE;
+}
+
+.randomTitle {
+    background-color: #3382DE;
+}
+
+.randomContent {
+    background-color: #37383e;
 }
 
 /*---------------------------------------------------------------------*/

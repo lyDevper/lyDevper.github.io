@@ -41,12 +41,19 @@ function decreaseBtnHandler() {
 }
 
 function setZeroBtnHandler() {
-    if(!confirm('Set all values to zero?'))
-        return;
-    
-    for(let record of counterRecords)
-        record.value = 0;
-    render_records(counterRecords);
+    if(selectedItem == null) {
+        if(!confirm('Set all values to zero?'))
+            return;
+        
+        for(let record of counterRecords)
+            record.value = 0;
+        render_records(counterRecords);
+    }
+    else {
+        let item = counterRecords.find(item => item.itemId == selectedItem);
+        item.value = 0;
+        render_records(counterRecords);
+    }
 }
 
 function itemClickHandler(el) {

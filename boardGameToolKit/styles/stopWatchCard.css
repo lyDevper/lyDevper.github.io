@@ -1,29 +1,32 @@
-.timerCard {
-    border-color: #FE824C;
-    background-color: #FE824C;
+.stopWatchCard {
+    border-color: #FF465C;
+    background-color: #FF465C;
 }
 
-.timerTitle {
-    background-color: #FE824C;
+.sWatchTitle {
+    background-color: #FF465C;
 }
 
-.timerContent {
+.sWatchContent {
     background-color: #37383e;
+    padding: 18px 2px;
 }
 
-.timerBtnPane {
 
+.sWatchBtnPane {
+    width: 45%;
 }
 
-.timerClockPane {
+.sWatchClockPane {
+    width: 55%;
     display: flex;
     justify-content: center;
 
     position: relative;
-    min-height: 122px;
+    min-height: 128px;
 }
 
-.timerClockCtn {
+.sWatchClockCtn {
     display: flex;    
     flex-direction: column;
     align-items: center;
@@ -32,7 +35,7 @@
     top: -64px;
 }
 
-#timerClockSvg {
+#sWatchClockSvg {
     
 }
 
@@ -40,33 +43,37 @@
     filter: drop-shadow(0px 0.2px 7px rgb(0 0 0 / 0.80));
 }
 
-#timerInput {
+.svg-drop-shadow2 {
+    filter: drop-shadow(0px 0px 3px rgb(0 0 0 / 0.64));
+}
+
+#sWatchLbl {
     background: none;
     border: none;
     color: white;
     font-family: 'Lucida Sans', sans-serif;
-    font-size: 20px;
+    font-size: 21px;
     font-weight: bold;
 
     position: absolute;
-    top: 82px
+    top: 88px
 }
 
-.timerBtn1 {
-    width: 80px;
-    height: 35px;
-    background: #FC5B38;
+.sWatchBtn1 {
+    width: 78px;
+    height: 38px;
+    background: #F52430;
     box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.8);
     border-radius: 4px;
     color: white;
 
-    margin: 8px 0;
-    margin-left: 12px;
+    margin: 9px 0;
+    margin-left: 24px;
 
     transition-duration: 0.06s;
 }
 
-.timerBtn1:active {
+.sWatchBtn1:active {
     box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.50);
     transform: translateY(1.6px);
 }
