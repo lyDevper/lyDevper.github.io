@@ -4,7 +4,11 @@ class TimerCard {
     static timeNow = new TimeDelta($('#timerInput').val());
     static isRunning = false;
     static {
-        TimerCard.init();
+        $().ready(() => {
+            setTimeout(() => {
+                TimerCard.init();
+            }, 40);
+        });        
     }
 
     constructor() {        

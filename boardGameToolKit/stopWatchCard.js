@@ -2,8 +2,15 @@ class SWatchCard {
     static timeNow = new TimeDelta(0, 0, 0);
     static isRunning = false;
 
+    static draw;
+    static clock;
+
     static {
-        SWatchCard.init();
+        $().ready(() => {
+            setTimeout(() => {
+                SWatchCard.init();
+            }, 20);
+        });
     }
 
     static init() {
@@ -14,8 +21,8 @@ class SWatchCard {
 
     static updateTime() {
         let secValue = SWatchCard.timeNow.msValue / 1000;
-        SWatchCard.clock.updateClock(secValue / 3600, secValue);
-        $('#sWatchLbl').text(SWatchCard.timeNow.toString2());        
+        $('#sWatchLbl').text(SWatchCard.timeNow.toString2());
+        SWatchCard.clock.updateClock(secValue / 60, secValue);
     }
 
     static startBtnHandler() {        
