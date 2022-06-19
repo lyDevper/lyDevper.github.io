@@ -29,9 +29,11 @@
         var result = Math.floor(Math.random() * (ranNum2 - ranNum1 + 1)) + ranNum1;            
         q('resultLbl').innerHTML = result;
 
-        var startCol = '#ff3636';
-        var endCol = '#4d8eff';
-        var color = colrBetweenNum(startCol, endCol, ranNum1, ranNum2, result);
+        var colors1 = ['#f02424', '#78d613', '#d61334'];
+        var colors = ['#f03737', '#d342ff', '#8165fc'];
+        var startCol = '#f03737' // '#ff3636';
+        var endCol = '#5f7df5'; // '#4d8eff';
+        var color = colorBetweenNum(colors, ranNum1, ranNum2, result);
         q('resultLbl').style.backgroundColor = color;
 
         return result

@@ -1,0 +1,256 @@
+.randerCard {
+    border-color: #B674F8;
+    background-color: #B674F8;
+}
+
+.randerTitle {
+    background-color: #B674F8;
+}
+
+.randerContent {
+    background-color: #37383e;
+    flex-direction: column;
+    align-items: center;
+}
+/*--------------------------------------------------------*/
+
+.randerResultDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 20px 20px 20px;
+}
+
+.randerResultBtn {
+    width: 200px;
+    height: 50px;
+    background: #EA47A9;
+    box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.8);
+    border-radius: 16px;
+
+    color: white;
+    font-family: 'Lucida Sans', sans-serif;
+    font-size: 18px;
+
+    transition-duration: 0.08s;
+}
+.randerResultBtn:active {
+    box-shadow: 0px 0px 7px 1px rgba(0, 0, 0, 0.60);
+    transform: translateY(2px);    
+}
+
+.btnClass1 {
+    box-shadow: 0px 1px 8px 1px rgba(0, 0, 0, 0.80);    
+    border: none;
+    transition-duration: 0.06s;
+}
+.btnClass1:active {
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.50);
+    transform: translateY(1.6px);
+}
+
+.randerControlDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    box-sizing: border-box;
+    margin: 8px 0 25px 0;
+    padding: 0 4px;
+}
+
+label {
+    font-family: 'Lucida Sans', Verdana, sans-serif;
+    font-size: 13px;
+}
+
+.randerInpNum1 {
+    width: 35px;
+    padding: 0 4px;
+    padding-bottom: 2px;
+    margin: 0 11px;
+    text-align: end;
+    
+    background: none;
+    border: none;
+    border-bottom: 2px solid #ffffff74;
+    border-radius: 0px;
+
+    font-family: 'Lucida Sans', Verdana, sans-serif;
+    font-size: 14px;
+    color: #e7e7e7;
+
+    transition-duration: 0.24s;
+}
+.randerInpNum1:focus {
+    outline: none;
+    border-bottom-color: #ffffff;
+}
+
+#applyNumRangeBtn {
+    background-color: #B245C3;
+}
+
+.randerBtn1 {
+    background: #865FC6;
+    box-shadow: 0px 1px 8px 1px rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+
+    padding: 5px 14px;
+    height: 32px;
+    margin: 0 5px;
+    color: #ffffff;
+
+    font-family: 'Lucida Sans', sans-serif;
+    font-size: 12px;
+
+    transition-duration: 0.04s;
+}
+
+.randerBtn1:active {
+    box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.60);
+    transform: translateY(1.6px);
+}
+
+.randerIcon1 {
+    font-size: 20px;
+}
+
+/*--------------------------------------------------------*/
+#randerRecords {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.randerItem {
+    width: 94%;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 11px 10px;
+    padding-top: 8px;
+    margin: 3px 0;
+    border-radius: 3px;
+
+    background-color: #47485468; /*#4C4D59;*/
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.4);
+    opacity: 0.66;
+    
+    transition-duration: 0.05s;
+}
+.randerItem:hover {
+    cursor: pointer;        
+}
+
+.randerSelectedItem {
+    opacity: 1.0;
+    background-color: #4F5160; /*#4C4D59;*/
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.45);
+}
+
+.randerHitItem {
+    border-left: solid 5px #F847A6;
+}
+
+.randerCheckbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    background-color: transparent;
+    border: 2px solid #c4c4c4;
+    fill: none;
+    text-align: center; 
+    padding: 0;
+    
+    transition-duration: 0.06s;
+}
+.randerCheckbox>span {
+    color: #c4c4c4;
+    text-align: center;
+    font-size: 21px;
+    transform: translate(-2px, -2px);
+}
+.randerCheckbox:hover {
+    border-color: #ffffff;
+    transform: scale(1.04);
+}
+.randerCheckbox:hover>span {
+    color: #ffffff;
+}
+
+.randerInp1 {
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 3px;
+
+    background: none;
+    border: none;
+    border-bottom: 2px solid #ffffff74;
+    border-radius: 0px;
+
+    font-family: 'Lucida Sans', Verdana, sans-serif;
+    font-size: 14px;
+    color: #e7e7e7;
+
+    transition-duration: 0.24s;
+}
+.randerInp1:focus {
+    outline: none;
+    border-bottom-color: #ffffffe5;
+}
+
+.randerItemName {
+    width: 54%;    
+}
+
+.randerDeleteBtn {
+    width: 6%;
+    padding: 0;
+    background: none;
+    border: none;
+
+    text-align: center;
+    font-size: 14px;
+    color: #e0e0e0d8;
+    transform: translateY(1px);
+
+    transition-duration: 0.08s;
+}
+.randerDeleteBtn:hover {
+    cursor: pointer;
+    color: #fbfbfb;
+    transform: scale(1.05);
+}
+
+.randerAddBtn {
+    background: #865FC6;
+    box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    border: none;
+
+    padding: 8px 45px;
+    margin: 18px 0;
+    margin-top: 22px;
+    color: white;
+
+    transition-duration: 0.08s;
+}
+.randerAddBtn:hover {
+    background: #704ea7;
+    
+}
+.randerAddBtn:active {
+    box-shadow: 0px 0px 6px 1px rgba(0, 0, 0, 0.6);
+    transform: translateY(2px);
+}

@@ -2,8 +2,8 @@ var q = (id) => document.getElementById(id);
 
 // wait for milliseconds
 function sleep(milliseconds) {
-      var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e9; i++) {
     if ((new Date().getTime() - start) > milliseconds){
       break;
     }
@@ -18,17 +18,22 @@ function randChoice(arr) {
   return arr[randInt(0, arr.length - 1)];
 }
 
+function shuffle(list) {
+  var newList = [];
+  while (list.length > 0) {
+    newList.push(list.splice(randInt(0, list.length - 1), 1)[0]);
+  }
+  return newList;
+}
+
 function genId() {
   return Math.random().toString(36).substr(2, 9);
   //return Date.now();
 }
 
 //using chroma.js to get color scale
-function colrBetweenNum(color1, color2, num1, num2, atNum) {
-  var c1 = chroma(color1);
-  var c2 = chroma(color2);
-  
-  var scaler = chroma.scale([c1, c2]).mode('lab').domain([num1, num2]).out(['hex', 'rgb']);
+function colorBetweenNum(colors, num1, num2, atNum) {
+  var scaler = chroma.scale(colors).mode('lab').domain([num1, num2]).out(['hex', 'rgb']);
   return scaler(atNum);
 }
 

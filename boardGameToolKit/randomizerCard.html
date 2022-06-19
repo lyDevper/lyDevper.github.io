@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="styles/randomizerCard.css">
+
+<div class="cardBox randerCard" id="moneyranderBox">
+    <div class="cardTitleDiv randerTitle">NAME RANDOMIZER</div>
+    <div class="centerDiv cardContentDiv randerContent">        
+        <div class="randerResultDiv">
+            <a>Lucky One : </a>
+            <button id="randerResultBtn" class="randerResultBtn" onclick="RanderCard.resultBtnHandler()">Random</button>
+        </div>
+        <div class="randerControlDiv">
+            <label>Or Pick From</label>
+            <input type="number" value="1" id="randerInpNum1" class="randerInpNum1">
+            <label>To</label>
+            <input type="number" value="10" id="randerInpNum2" class="randerInpNum1">
+            <button id="applyNumRangeBtn" class="randerBtn1" onclick="RanderCard.applyNumRangeBtnHandler()">Apply</button>
+        </div>
+        <div class="randerControlDiv">
+            <button id="randerShuffleBtn" class="randerBtn1" onclick="RanderCard.shuffleBtnHandler()">
+                <span class="material-symbols-outlined randerIcon1">autorenew</span>
+            </button>
+            <button id="randerClearBtn" class="randerBtn1" onclick="RanderCard.clearBtnHandler()">
+                <span class="material-symbols-outlined randerIcon1">delete</span>
+            </button>
+            <button id="randerSelectAllBtn" class="randerBtn1" onclick="RanderCard.selectAllBtnHandler()">Select All</button>
+            <button id="randerDeselectAllBtn" class="randerBtn1" onclick="RanderCard.deselectAllBtnHandler()">Deselect All</button>
+        </div>
+        
+
+        <div id="randerRecords">
+            <!--records to be render-->
+        </div>
+        <button class="randerAddBtn" onclick="RanderCard.addItemHandler(this)">Add</button>
+    </div>
+</div>
+
+<template id="randerRecord-template">
+    <div class="randerItem" data-item-id="{itemId}" data-isSelected="{isSelected}" onclick="RanderCard.itemClickHandler(this)">
+        <button class="randerCheckbox" data-item-id="{itemId}" onclick="RanderCard.itemCheckHandler(this)">
+            <span class="material-symbols-outlined">check</span>
+        </button>
+        <input type="text" class="randerItemName randerInp1" value="{name}" data-item-id="{itemId}" onchange="RanderCard.itemNameChangedHandler(this)">        
+        <button class="randerDeleteBtn" data-item-id="{itemId}" onclick="RanderCard.deleteItemHandler(this)">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+</template>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>        
+<script src="randomizerCard.js"></script>    

@@ -21,7 +21,7 @@
     min-width: 32px;
     height: 32px;
     background: #666575;
-    box-shadow: 0px 1px 8px 1px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 1px 6px 1px rgba(0, 0, 0, 0.7);
     border-radius: 30px;
     border: none;
 
@@ -38,7 +38,7 @@
 }
 .selectedCoin {
     background: #F0EFF8;
-    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.6);
     color: black;
     transform: translateY(2.0px);
 }

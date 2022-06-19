@@ -57,10 +57,13 @@ input[type=number] {
 
 button {
     border: none;
+    font-family: 'Lucida Sans', sans-serif;
+    font-size: 13px;
 }
 button:hover {
     cursor: pointer;
 }
+
 /*
 input[type="time"]::-webkit-calendar-picker-indicator {
     color: white;
@@ -68,4 +71,16 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 */
 input[type="time"]:active {
     outline: none;
+}
+
+input[type=time]::-webkit-datetime-edit-ampm-field {
+    display: none;
+}
+input[type=time]::-webkit-clear-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    -ms-appearance:none;
+    appearance: none;
+    margin: -10px; 
 }

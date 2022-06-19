@@ -68,7 +68,7 @@ function itemClickHandler(el) {
     $('#counterRecords').find('.selectedItem').removeClass('selectedItem');
     el.addClass('selectedItem');
 
-    console.log(el.html(), selectedItem);
+    console.log('item selected', selectedItem);
 }
 
 function deselectItems() {
@@ -94,10 +94,9 @@ function render_records(records=[{}]) {
             recordEl.addClass('selectedItem');
 
         $('#counterRecords').append(recordEl);
-        
-        console.log(recordEl.html());
+        //console.log(recordEl.html());
     }
-    console.log(records);
+    console.log('render_records', records);
 }
 
 var counterRecords = [{name:'Person 1', value:0, isSelected:false, itemId:genId()},
