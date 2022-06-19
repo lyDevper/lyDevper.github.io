@@ -41,7 +41,7 @@
 }
 
 #timerInput {
-    width: auto;
+    width: 129px; /*fixed for mobile*/
     background: none;
     border: none;
     color: white;

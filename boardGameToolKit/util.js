@@ -33,8 +33,14 @@ function genId() {
 
 //using chroma.js to get color scale
 function colorBetweenNum(colors, num1, num2, atNum) {
-  var scaler = chroma.scale(colors).mode('lab').domain([num1, num2]).out(['hex', 'rgb']);
-  return scaler(atNum);
+  try {
+    var scaler = chroma.scale(colors).mode('lab').domain([num1, num2]).out(['hex', 'rgb']);
+    return scaler(atNum);
+  }
+  catch {
+    console.log('chroma.js error');
+    return colors[0];
+  }
 }
 
 class TimeDelta {

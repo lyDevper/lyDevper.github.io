@@ -120,8 +120,8 @@ class RanderCard {
         var hitItem;
         var i = 0;
         var randInterval = setInterval(function() {
-            hitItem = RanderCard.randAndShow();
             i++;
+            hitItem = RanderCard.randAndShow();
             if(i > 16) { // after looping
                 clearInterval(randInterval);
                 setTimeout(afterRandom, 200);
