@@ -32,9 +32,9 @@ class Asteroid extends Collider {
         this.y = cvsHeight/2 + spawnY;
 
         this.thetaV = Math.random() * 360;
-        this.v = 1;
+        this.v = randBetween(0.4, 1.4);
 
-        this.omega = randBetween(-4, 4); //for rotating appearance
+        this.omega = randBetween(-4.5, 4.5); //for rotating appearance
 
         this.appearance = {
             n: randInt(3, 8),

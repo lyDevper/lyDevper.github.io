@@ -10,6 +10,13 @@ function rad2deg(rad) {
     return rad * 180 / Math.PI;
 }
 
+function modRound(value, full=360) {
+    value %= full;
+    if(value < 0)
+        value += full;
+    return value;
+}
+
 function distance(x1, y1, x2, y2) {
     return Math.sqrt((x1-x2)**2 + (y1-y2)**2);
 }

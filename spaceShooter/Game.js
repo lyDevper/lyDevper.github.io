@@ -39,6 +39,8 @@ class Game {
             //to render over them
             scoreText.render(ctx);
             hearts.render(ctx);
+            graphVelocity.render(ctx);
+            graphOmega.render(ctx);
         }, 1000/40);
 
         //--------handling event---------
@@ -74,25 +76,35 @@ class Game {
 
         document.onkeydown = function(event) {
             if(event.keyCode==32) {
-                new Bullet(rocket.x, rocket.y, rocket.theta);
+                rocket.shoot();
             }
             
         }
 
-        // for mobile compatible
+        // for mobile compatible -------------
+        var headTo = function(targetX, targetY) {
+            // Calculate the angle between the rocket and the target position
+            var angle = Math.atan2(targetY - rocket.y, targetX - rocket.x);
+            angle = modRound(rad2deg(angle), 360);
+            var rocketTheta = modRound(rocket.theta, 360);
+            var diffAng = modRound(angle - rocketTheta, 360);
+            if(diffAng > 180)
+                diffAng -= 360; //so the rocket turn to that direction
+            rocket.omega = diffAng * 0.04;
+            
+            var dist = distance(targetX, targetY, rocket.x, rocket.y);
+            rocket.a_thrust = rocket.thrustPower * dist**0.4 * 0.08;
+            
+            //rocket.omega = Math.sign(rocket.omega) * Math.sqrt(Math.abs(rocket.omega)) *1.5; //act function
+            rocket.shoot();
+        };
+        
         document.onmousedown = function(event) {
             // Calculate the target position for the rocket
             var targetX = event.clientX;
             var targetY = event.clientY;
         
-            // Calculate the angle between the rocket and the target position
-            var angle = Math.atan2(targetY - rocket.y, targetX - rocket.x);
-            angle = rad2deg(angle);
-            // Set the thrust and turn acceleration based on the angle
-            rocket.a_thrust = rocket.thrustPower * 0.6;
-            rocket.omega = (angle - rocket.theta) * 0.04;
-            //rocket.omega = Math.sign(rocket.omega) * Math.sqrt(Math.abs(rocket.omega)) *1.5; //act function
-            rocket.shoot();
+            headTo(targetX, targetY);
         };
         
         document.ontouchstart = function(event) {
@@ -100,13 +112,7 @@ class Game {
             var targetX = event.touches[0].clientX;
             var targetY = event.touches[0].clientY;
         
-            // Calculate the angle between the rocket and the target position
-            var angle = Math.atan2(targetY - rocket.y, targetX - rocket.x);
-            angle = rad2deg(angle);
-            // Set the thrust and turn acceleration based on the angle
-            rocket.a_thrust = rocket.thrustPower * 0.6;
-            rocket.omega = (angle - rocket.theta) * 0.04;
-            rocket.shoot();
+            headTo(targetX, targetY);
         };
 
         document.onmouseup = function(event) {
