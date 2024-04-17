@@ -1,0 +1,48 @@
+body {    
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+
+    font-family: "Noto Sans Thai", "Roboto";
+    color: white;
+    font-size: 14px;
+}
+
+div {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.mainDiv {
+    display: flex;
+    width: 100%;
+}
+
+/* left banner is 30% wide*/
+.leftBanner {
+    width: 28vw;
+    height: 100vh;
+    background-color: #22333A;
+
+    flex-direction: column;
+    overflow: scroll;
+
+    box-sizing: border-box;
+    padding: 0;
+    
+    box-shadow: 1px 0px 15px 1px rgba(0, 0, 0, 0.50);
+    z-index: 1;
+}
+
+.rightContent {
+    width: 72vw;
+    height: 100vh;
+    background-color: #246C9D;
+}
+
+#canvas1 {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

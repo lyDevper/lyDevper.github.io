@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CiracSim</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/leftBanner.css">
+</head>
+<body>
+    <div class="mainDiv">
+        <div class="leftBanner">   
+
+            <div class="panelDiv">
+                <div class="panelHeadDiv">
+                    <h2 class="header1">Robot Parameters</h2>
+                </div>
+
+                <div class="panelContentDiv">
+                    <!-- rpm, rps, omega, h_c-->
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_rpm">RPM : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_rpm" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">RPM</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_rpm">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div> 
+                    </div>
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_rps">RPS : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_rps" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">RPS</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_rps">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div> 
+                    </div>
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_omega">ω : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_omega" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">rad/s</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_omega">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div> 
+                    </div>
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_h_c">h_c : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_h_c" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">m</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_h_c">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div> 
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="panelDiv">
+                <div class="panelHeadDiv">
+                    <h2 class="header1">Forward</h2>
+                </div>
+
+                <div class="panelContentDiv">
+                    <!-- theta, r-->
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_theta">θ : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_theta" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">deg</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_theta">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div> 
+                    </div>
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_r">r : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_r" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">m</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_r">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div> 
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="panelDiv">
+                <div class="panelHeadDiv">
+                    <h2 class="header1">Inverse</h2>
+                </div>
+
+                <div class="panelContentDiv">
+                    <!-- x_f, y_f-->
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_x_f">x_f : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_x_f" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">m</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_x_f">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div> 
+                    </div>
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_y_f">y_f : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_y_f" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">m</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_y_f">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div> 
+                    </div>
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="solve_for">Solve for : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="radio" name="solve_for" id="theta_radio" class="radio1">
+                            <label for="theta_radio">θ</label>
+                            <input type="radio" name="solve_for" id="r_radio" class="radio1">
+                            <label for="r_radio">r</label>
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText"></p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="solveBtn" id="solveBtn">
+                                Solve
+                                <span class="material-symbols-outlined icon2">
+                                    settings_timelapse
+                                </span>
+                            </button>
+                        </div>
+                        
+                    </div>
+                        
+                </div>
+            </div>
+
+        </div>        
+        <div class="rightContent">
+            <canvas id="canvas1"></canvas>
+        </div>    
+    </div>
+    
+    <script src="scripts/Point.js"></script>
+    <script src="scripts/State.js"></script>
+    <script src="scripts/StatePara.js"></script>
+    <script src="scripts/MathEngine.js"></script>
+    <script src="scripts/Simulator.js"></script>    
+    <script src="scripts/CoorProps.js"></script>
+
+    <script src="scripts/Sprite.js"></script>
+    <script src="scripts/BackGrid.js"></script>
+    <script src="scripts/Robot.js"></script>
+    <script src="scripts/CircleLine.js"></script>
+    <script src="scripts/Ball.js"></script>
+    <script src="scripts/GoalPlane.js"></script>
+    <script src="scripts/Goal.js"></script>
+    <script src="scripts/Trajectory.js"></script>
+
+    <script src="scripts/ParaInpHandler.js"></script>
+
+    <script src="scripts/index.js"></script>
+</body>
+</html>
