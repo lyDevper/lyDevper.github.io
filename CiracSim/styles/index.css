@@ -6,7 +6,13 @@ body {
 
     font-family: "Noto Sans Thai", "Roboto";
     color: white;
-    font-size: 14px;
+    font-size: 12px;
+}
+
+p {
+    margin: 0;
+    font-family: "Noto Sans Thai", "Roboto";
+    color: white;
 }
 
 div {
@@ -45,4 +51,54 @@ div {
     width: 100%;
     height: 100%;
     object-fit: contain;
+}
+
+/* result box --------------------------------- */
+.resultBoxDiv {
+    position: absolute;
+    right: 3vw;
+    bottom: 3.2vh;
+    width: 30vw;
+    height: 25vh;
+
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    background-color: #1D473F;
+    box-shadow: 1px 1px 10px 1.2px rgba(0, 0, 0, 0.50);
+}
+
+.resultHeadDiv {
+    width: 100%;
+    height: 54px;
+    padding-left: 16px;
+    display: flex;
+    align-items: center;
+    background-color: #17392D;
+}
+
+.resultContentDiv {
+    width: 100%;
+    height: 100%;
+    padding: 16px 24px 12px 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.txtLineDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.txt1 {
+    font-size: 12px;
+}
+
+.outTxt1 {
+    font-size: 12px;
+    font-weight: bold;
 }

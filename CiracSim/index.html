@@ -230,7 +230,43 @@
         </div>        
         <div class="rightContent">
             <canvas id="canvas1"></canvas>
-        </div>    
+        </div>
+
+        <div class="resultBoxDiv">
+            <div class="resultHeadDiv">
+                <h2 class="header1">Results</h2>
+            </div>
+            <div class="resultContentDiv">
+                <div class="txtLineDiv">
+                    <a class="txt1">Using parameters θ =&nbsp;</a>
+                    <a id="outTxt_theta" class="outTxt1">XXXX</a>
+                    <a class="txt1">&nbsp;deg and r =&nbsp;</a>
+                    <a id="outTxt_r" class="outTxt1">XXXX</a>
+                    <a class="txt1">&nbsp;m</a>
+                </div>
+                <div class="txtLineDiv">
+                    <a class="txt1">To hit the goal at y =&nbsp;</a>
+                    <a id="outTxt_y_f" class="outTxt1">XXXX</a>
+                    <a class="txt1">&nbsp;m</a>
+                </div>
+
+                <hr width="100%" color="#4A726B">
+                <div class="txtLineDiv">
+                    <a class="txt1">Y-intercept at goal :&nbsp;</a>
+                    <a id="outTxt_y_intercept" class="outTxt1">XXXX</a>
+                    <a class="txt1">&nbsp;m</a>
+                </div>                
+                <div class="txtLineDiv">
+                    <a class="txt1">Distance of missing :&nbsp;</a>
+                    <a id="outTxt_error_y" class="outTxt1">XXXX</a>
+                    <a class="txt1">&nbsp;m</a>
+                    <a class="txt1">&nbsp;=&nbsp;</a>
+                    <a id="outTxt_error_y_cm" class="outTxt1">XXXX</a>
+                    <a class="txt1">&nbsp;cm</a>
+                </div>
+
+            </div>
+        </div>
     </div>
     
     <script src="scripts/Point.js"></script>
@@ -250,6 +286,7 @@
     <script src="scripts/Trajectory.js"></script>
 
     <script src="scripts/ParaInpHandler.js"></script>
+    <script src="scripts/OutTextHandler.js"></script>
 
     <script src="scripts/index.js"></script>
 </body>

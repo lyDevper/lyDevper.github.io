@@ -23,10 +23,10 @@ class ParaInpHandler {
 
         // bind state to input appearance
         this.state.addReactFunc((val) => {
-            this.input.value = val;
+            this.setValue(val);
         });
 
-        this.input.value = this.defaultVal;
+        this.setValue(this.defaultVal);
         this.input.step = numStep;
     }
     
@@ -35,6 +35,7 @@ class ParaInpHandler {
     }
 
     setValue(value) {
+        // to be considered about decimal places
         this.input.value = value;
     }
 
