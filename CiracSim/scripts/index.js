@@ -15,6 +15,7 @@ let goal = new Goal(canvas1, coor1);
 let trajectory = new Trajectory(canvas1, coor1);
 
 ParaInpHandler.buildHandlers();
+PanelClpsHandler.buildHandlers();
 OutTextHandler.buildHandlers();
 
 // for fun

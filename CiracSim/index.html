@@ -21,9 +21,14 @@
             <div class="panelDiv">
                 <div class="panelHeadDiv">
                     <h2 class="header1">Robot Parameters</h2>
+                    <button class="clpsBtn" id="clpsBtn_robotPara">
+                        <span class="material-symbols-outlined icon3">
+                            expand_more
+                        </span>
+                    </button>
                 </div>
 
-                <div class="panelContentDiv">
+                <div class="panelContentDiv" id="panelCnt_robotPara">
                     <!-- rpm, rps, omega, h_c-->
 
                     <div class="fieldDiv">
@@ -108,9 +113,14 @@
             <div class="panelDiv">
                 <div class="panelHeadDiv">
                     <h2 class="header1">Forward</h2>
+                    <button class="clpsBtn" id="clpsBtn_forward">
+                        <span class="material-symbols-outlined icon3">
+                            expand_more
+                        </span>
+                    </button>
                 </div>
 
-                <div class="panelContentDiv">
+                <div class="panelContentDiv" id="panelCnt_forward">
                     <!-- theta, r-->
 
                     <div class="fieldDiv">
@@ -157,9 +167,14 @@
             <div class="panelDiv">
                 <div class="panelHeadDiv">
                     <h2 class="header1">Inverse</h2>
+                    <button class="clpsBtn" id="clpsBtn_inverse">
+                        <span class="material-symbols-outlined icon3">
+                            expand_more
+                        </span>
+                    </button>
                 </div>
 
-                <div class="panelContentDiv">
+                <div class="panelContentDiv" id="panelCnt_inverse">
                     <!-- x_f, y_f-->
 
                     <div class="fieldDiv">
@@ -286,6 +301,7 @@
     <script src="scripts/Trajectory.js"></script>
 
     <script src="scripts/ParaInpHandler.js"></script>
+    <script src="scripts/PanelClpsHandler.js"></script>
     <script src="scripts/OutTextHandler.js"></script>
 
     <script src="scripts/index.js"></script>
