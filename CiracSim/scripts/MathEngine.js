@@ -47,7 +47,7 @@ class MathEngine {
     }
 
     static getBallFinalPos() {
-        let x_f = StatePara.x_f;
+        let x_f = StatePara.x_goal;
         let y_f = MathEngine.trajectoryAtX(x_f);
         return new Point(x_f, y_f);
     }
@@ -57,7 +57,7 @@ class MathEngine {
         let r = StatePara.r;
         let h_c = StatePara.h_c;
         let g = StatePara.g;
-        let x_f = StatePara.x_f;
+        let x_f = StatePara.x_goal;
 
         let y_f = (h_c + r * Math.sin(thetaRad)) + 
                   (x_f + r * Math.cos(thetaRad)) / Math.tan(thetaRad) + 
@@ -69,7 +69,7 @@ class MathEngine {
         let thetaRad = MathEngine.degToRad(StatePara.theta);
         let h_c = StatePara.h_c;
         let g = StatePara.g;
-        let x_f = StatePara.x_f;
+        let x_f = StatePara.x_goal;
 
         let y_f = (h_c + r * Math.sin(thetaRad)) + 
                   (x_f + r * Math.cos(thetaRad)) / Math.tan(thetaRad) + 
@@ -79,10 +79,10 @@ class MathEngine {
 
     static solveForTheta() {
         // solve for theta to satisfy the condition that the ball hits the target
-        // at x_f, y_f
+        // at x_goal, y_goal
         // using Newtom-Raphson method
-        let y_f = StatePara.y_f;
-        let theta_result = MathEngine.solveFunctionRoot(MathEngine.y_f_of_theta, y_f, 89, 1e-6, 1000);
+        let y_goal = StatePara.y_goal;
+        let theta_result = MathEngine.solveFunctionRoot(MathEngine.y_f_of_theta, y_goal, 89, 1e-6, 1000);
         
         console.log(`theta_result solved to: ${theta_result}`);
         return theta_result;        
@@ -90,10 +90,10 @@ class MathEngine {
 
     static solveForR() {
         // solve for r to satisfy the condition that the ball hits the target
-        // at x_f, y_f
+        // at x_goal, y_goal
         // using Newtom-Raphson method
-        let y_f = StatePara.y_f;
-        let r_result = MathEngine.solveFunctionRoot(MathEngine.y_f_of_r, y_f, 0.5, 1e-6, 1000);
+        let y_goal = StatePara.y_goal;
+        let r_result = MathEngine.solveFunctionRoot(MathEngine.y_f_of_r, y_goal, 0.5, 1e-6, 1000);
         
         console.log(`r_result solved to: ${r_result}`);
         return r_result;

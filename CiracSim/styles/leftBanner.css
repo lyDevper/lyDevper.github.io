@@ -57,6 +57,7 @@
 .panelContentDiv {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin-top: 8px;
 }
 
@@ -82,11 +83,11 @@
     width: 32%;
 }
 .fieldCol2 {
-    width: 36%;
+    width: 32%;
 }
 .fieldCol3 {
     width: 20%;
-    padding-left: 6px;
+    padding-left: 12px;
 }
 .fieldCol4 {    
     width: 8%;
@@ -103,7 +104,7 @@
     padding-left: 5px;
 
     color: white;
-    font-size: 14px;
+    font-size: 12px;
     font-family: "Noto Sans Thai", "Roboto";
 
     transition-duration: 0.12s;
@@ -132,6 +133,7 @@
 
     position: relative;
     top: 1px;
+    right: 14px;
 }
 .resetBtn:hover {
     color: #ffffffca;

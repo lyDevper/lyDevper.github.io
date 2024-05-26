@@ -31,7 +31,7 @@ button {
 
 /* left banner is 30% wide*/
 .leftBanner {
-    width: 28vw;
+    width: 32vw;
     height: 100vh;
     background-color: #22333A;
 
@@ -46,7 +46,7 @@ button {
 }
 
 .rightContent {
-    width: 72vw;
+    width: 68vw;
     height: 100vh;
     background-color: #246C9D;
 }
@@ -61,9 +61,9 @@ button {
 .resultBoxDiv {
     position: absolute;
     right: 3vw;
-    bottom: 3.2vh;
-    width: 30vw;
-    height: 25vh;
+    bottom: 3.3vh;
+    width: 480px;
+    height: 25vh; /* 210px */
 
     display: flex;
     flex-direction: column;

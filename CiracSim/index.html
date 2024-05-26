@@ -13,11 +13,13 @@
 
     <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="styles/leftBanner.css">
+    <link rel="stylesheet" href="styles/goalSim.css">
 </head>
 <body>
     <div class="mainDiv">
         <div class="leftBanner">   
-
+            
+            <!-- Robot Parameters -->
             <div class="panelDiv">
                 <div class="panelHeadDiv">
                     <h2 class="header1">Robot Parameters</h2>
@@ -110,9 +112,141 @@
                 </div>
             </div>
 
+            <!-- Fixed Parameters -->
             <div class="panelDiv">
                 <div class="panelHeadDiv">
-                    <h2 class="header1">Forward</h2>
+                    <h2 class="header1">Fixed Parameters</h2>
+                    <button class="clpsBtn" id="clpsBtn_fixedPara">
+                        <span class="material-symbols-outlined icon3">
+                            expand_more
+                        </span>
+                    </button>
+                </div>
+
+                <div class="panelContentDiv" id="panelCnt_fixedPara">
+                    <!-- table height, triangle side, triangle height, goal diameter, ball diameter, basket z offset-->
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_tableHeight">Table height : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_tableHeight" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">m</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_tableHeight">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_triangleSide">Triangle side : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_triangleSide" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">m</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_triangleSide">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_triangleHeight">Triangle height : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_triangleHeight" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">m</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_triangleHeight">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_goalDiameter">Goal Diameter : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_goalDiameter" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">m</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_goalDiameter">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_ballDiameter">Ball Diameter : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_ballDiameter" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">m</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_ballDiameter">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_basketZOffset">Basket z Offset : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_basketZOffset" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">m</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_basketZOffset">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Forward Kinematics -->
+            <div class="panelDiv">
+                <div class="panelHeadDiv">
+                    <h2 class="header1">Forward Kinematics</h2>
                     <button class="clpsBtn" id="clpsBtn_forward">
                         <span class="material-symbols-outlined icon3">
                             expand_more
@@ -121,7 +255,7 @@
                 </div>
 
                 <div class="panelContentDiv" id="panelCnt_forward">
-                    <!-- theta, r-->
+                    <!-- theta, r, z_robot-->
 
                     <div class="fieldDiv">
                         <div class="fieldCol1">
@@ -161,34 +295,54 @@
                         </div> 
                     </div>
 
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_z_robot">z_robot : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_z_robot" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">m</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_z_robot">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div> 
+                    </div>
+
                 </div>
             </div>
 
+            <!-- Error Compensation -->
             <div class="panelDiv">
                 <div class="panelHeadDiv">
-                    <h2 class="header1">Inverse</h2>
-                    <button class="clpsBtn" id="clpsBtn_inverse">
+                    <h2 class="header1">Error Compensation</h2>
+                    <button class="clpsBtn" id="clpsBtn_errorCmpst">
                         <span class="material-symbols-outlined icon3">
                             expand_more
                         </span>
                     </button>
                 </div>
 
-                <div class="panelContentDiv" id="panelCnt_inverse">
-                    <!-- x_f, y_f-->
+                <div class="panelContentDiv" id="panelCnt_errorCmpst">
+                    <!-- cmpst_theta, cmpst_r, cmpst_z_robot-->
 
                     <div class="fieldDiv">
                         <div class="fieldCol1">
-                            <label for="inp_x_f">x_f : </label>
+                            <label for="inp_cmpst_theta">Δθ : </label>
                         </div>
                         <div class="fieldCol2">
-                            <input type="number" id="inp_x_f" class="inp1">
+                            <input type="number" id="inp_cmpst_theta" class="inp1">
                         </div>
                         <div class="fieldCol3">
-                            <p class="unitText">m</p>
+                            <p class="unitText">deg</p>
                         </div>
                         <div class="fieldCol4">
-                            <button class="resetBtn" id="reset_x_f">
+                            <button class="resetBtn" id="reset_cmpst_theta">
                                 <span class="material-symbols-outlined icon1">
                                     refresh
                                 </span>
@@ -198,16 +352,109 @@
 
                     <div class="fieldDiv">
                         <div class="fieldCol1">
-                            <label for="inp_y_f">y_f : </label>
+                            <label for="inp_cmpst_r">Δr : </label>
                         </div>
                         <div class="fieldCol2">
-                            <input type="number" id="inp_y_f" class="inp1">
+                            <input type="number" id="inp_cmpst_r" class="inp1">
                         </div>
                         <div class="fieldCol3">
                             <p class="unitText">m</p>
                         </div>
                         <div class="fieldCol4">
-                            <button class="resetBtn" id="reset_y_f">
+                            <button class="resetBtn" id="reset_cmpst_r">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div> 
+                    </div>
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_cmpst_z_robot">Δz_robot : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_cmpst_z_robot" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">m</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_cmpst_z_robot">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div> 
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Inverse Kinematics -->
+            <div class="panelDiv">
+                <div class="panelHeadDiv">
+                    <h2 class="header1">Inverse Kinematics</h2>
+                    <button class="clpsBtn" id="clpsBtn_inverse">
+                        <span class="material-symbols-outlined icon3">
+                            expand_more
+                        </span>
+                    </button>
+                </div>
+
+                <div class="panelContentDiv" id="panelCnt_inverse">
+                    <!-- x_goal, y_goal, z_goal-->
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_x_goal">x_goal : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_x_goal" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">m</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_x_goal">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div> 
+                    </div>
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_y_goal">y_goal : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_y_goal" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">m</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_y_goal">
+                                <span class="material-symbols-outlined icon1">
+                                    refresh
+                                </span>
+                            </button>
+                        </div> 
+                    </div>
+
+                    <div class="fieldDiv">
+                        <div class="fieldCol1">
+                            <label for="inp_z_goal">z_goal : </label>
+                        </div>
+                        <div class="fieldCol2">
+                            <input type="number" id="inp_z_goal" class="inp1">
+                        </div>
+                        <div class="fieldCol3">
+                            <p class="unitText">m</p>
+                        </div>
+                        <div class="fieldCol4">
+                            <button class="resetBtn" id="reset_z_goal">
                                 <span class="material-symbols-outlined icon1">
                                     refresh
                                 </span>
@@ -242,6 +489,219 @@
                 </div>
             </div>
 
+            <!-- Goal Position Simulator-->
+            <div class="panelDiv">
+                <div class="panelHeadDiv">
+                    <h2 class="header1">Goal Positions</h2>
+                    <button class="clpsBtn" id="clpsBtn_goalPos">
+                        <span class="material-symbols-outlined icon3">
+                            expand_more
+                        </span>
+                    </button>
+                </div>
+
+                <div class="panelContentDiv" id="panelCnt_goalPos">
+                    <canvas id="canvas2" style="display: none;"></canvas>
+
+                    <!-- rotateAng input -->
+                    <div class="gsPosDiv">
+                        <div class="gsFieldDiv" style="padding-left: 30px;">
+                            <div class="gsFieldCol1">
+                                <label for="inp_gsRotateAng">Rotate By : </label>
+                            </div>
+                            <div class="gsFieldCol2" style="justify-content: flex-start;">
+                                <input type="number" id="inp_gsRotateAng" class="inp1 inp_gsPos">
+                                &nbsp;&nbsp;&nbsp;
+                                <p class="unitText">deg cw</p>
+                                <!-- buttons to rotate left and right-->
+                                <button class="rotateBtn" id="rotateLeftBtn">
+                                    <span class="material-symbols-outlined icon1">
+                                        rotate_left
+                                    </span>
+                                </button>
+                                <button class="rotateBtn" id="rotateRightBtn">
+                                    <span class="material-symbols-outlined icon1">
+                                        rotate_right
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="gsFieldCol3">
+                                <button class="resetBtn" id="reset_gsRotateAng">
+                                    <span class="material-symbols-outlined icon1">
+                                        refresh
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="hr1">
+ 
+                    <!-- Position 1 -->
+                    <div class="gsPosDiv">
+                        <div class="gsPosHeadDiv">
+                            <div class="gsPosHeadCol1">
+                                <a>Position 1 : </a>
+                            </div>
+                            <div class="gsPosHeadCol2">
+                                <button id="usePos1_btn" class="usePosBtn">Use</button>
+                            </div>
+                            <div class="gsPosHeadCol3">
+                                <button class="resetBtn" id="reset_gsPos1">
+                                    <span class="material-symbols-outlined icon1">
+                                        refresh
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="gsFieldDiv">
+                            <div class="gsFieldCol1">
+                                <a>Original : </a>
+                            </div>
+                            <div class="gsFieldCol2">
+                                <label>&#40;&nbsp;z =&nbsp;</label>
+                                <input type="number" id="inp_gsPos1_original_z" class="inp1 inp_gsPos">
+                                <label>&nbsp;,&nbsp;&nbsp;&nbsp;</label>
+                                <label>y =&nbsp;</label>
+                                <input type="number" id="inp_gsPos1_original_y" class="inp1 inp_gsPos">
+                                <label>&nbsp;&#41;</label>
+                            </div>
+                            <div class="gsFieldCol3">
+                                <p id="unitTxt_pos1_original" class="unitText gsUnitText">m</p>
+                            </div>
+                        </div>
+
+                        <div class="gsFieldDiv">
+                            <div class="gsFieldCol1">
+                                <a>Rotated to : </a>
+                            </div>
+                            <div class="gsFieldCol2">
+                                <label>&#40;&nbsp;z =&nbsp;</label>
+                                <input type="number" id="inp_gsPos1_rotated_z" class="inp1 inp_gsPos">
+                                <label>&nbsp;,&nbsp;&nbsp;&nbsp;</label>
+                                <label>y =&nbsp;</label>
+                                <input type="number" id="inp_gsPos1_rotated_y" class="inp1 inp_gsPos">
+                                <label>&nbsp;&#41;</label>
+                            </div>
+                            <div class="gsFieldCol3">
+                                <p id="unitTxt_pos1_rotated" class="unitText gsUnitText">m</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr class="hr1">
+
+                    <!-- Position 2 -->
+                    <div class="gsPosDiv">
+                        <div class="gsPosHeadDiv">
+                            <div class="gsPosHeadCol1">
+                                <a>Position 2 : </a>
+                            </div>
+                            <div class="gsPosHeadCol2">
+                                <button id="usePos2_btn" class="usePosBtn">Use</button>
+                            </div>
+                            <div class="gsPosHeadCol3">
+                                <button class="resetBtn" id="reset_gsPos2">
+                                    <span class="material-symbols-outlined icon1">
+                                        refresh
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <div class="gsFieldDiv">
+                            <div class="gsFieldCol1">
+                                <a>Original : </a>
+                            </div>
+                            <div class="gsFieldCol2">
+                                <label>&#40;&nbsp;z =&nbsp;</label>
+                                <input type="number" id="inp_gsPos2_original_z" class="inp1 inp_gsPos">
+                                <label>&nbsp;,&nbsp;&nbsp;&nbsp;</label>
+                                <label>y =&nbsp;</label>
+                                <input type="number" id="inp_gsPos2_original_y" class="inp1 inp_gsPos">
+                                <label>&nbsp;&#41;</label>
+                            </div>
+                            <div class="gsFieldCol3">
+                                <p id="unitTxt_pos2_original" class="unitText gsUnitText">m</p>
+                            </div>
+                        </div>
+                    
+                        <div class="gsFieldDiv">
+                            <div class="gsFieldCol1">
+                                <a>Rotated to : </a>
+                            </div>
+                            <div class="gsFieldCol2">
+                                <label>&#40;&nbsp;z =&nbsp;</label>
+                                <input type="number" id="inp_gsPos2_rotated_z" class="inp1 inp_gsPos">
+                                <label>&nbsp;,&nbsp;&nbsp;&nbsp;</label>
+                                <label>y =&nbsp;</label>
+                                <input type="number" id="inp_gsPos2_rotated_y" class="inp1 inp_gsPos">
+                                <label>&nbsp;&#41;</label>
+                            </div>
+                            <div class="gsFieldCol3">
+                                <p id="unitTxt_pos2_rotated" class="unitText gsUnitText">m</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="hr1">
+                    
+                    <!-- Position 3 -->
+                    <div class="gsPosDiv">
+                        <div class="gsPosHeadDiv">
+                            <div class="gsPosHeadCol1">
+                                <a>Position 3 : </a>
+                            </div>
+                            <div class="gsPosHeadCol2">
+                                <button id="usePos3_btn" class="usePosBtn">Use</button>
+                            </div>
+                            <div class="gsPosHeadCol3">
+                                <button class="resetBtn" id="reset_gsPos3">
+                                    <span class="material-symbols-outlined icon1">
+                                        refresh
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <div class="gsFieldDiv">
+                            <div class="gsFieldCol1">
+                                <a>Original : </a>
+                            </div>
+                            <div class="gsFieldCol2">
+                                <label>&#40;&nbsp;z =&nbsp;</label>
+                                <input type="number" id="inp_gsPos3_original_z" class="inp1 inp_gsPos">
+                                <label>&nbsp;,&nbsp;&nbsp;&nbsp;</label>
+                                <label>y =&nbsp;</label>
+                                <input type="number" id="inp_gsPos3_original_y" class="inp1 inp_gsPos">
+                                <label>&nbsp;&#41;</label>
+                            </div>
+                            <div class="gsFieldCol3">
+                                <p id="unitTxt_pos3_original" class="unitText gsUnitText">m</p>
+                            </div>
+                        </div>
+                    
+                        <div class="gsFieldDiv">
+                            <div class="gsFieldCol1">
+                                <a>Rotated to : </a>
+                            </div>
+                            <div class="gsFieldCol2">
+                                <label>&#40;&nbsp;z =&nbsp;</label>
+                                <input type="number" id="inp_gsPos3_rotated_z" class="inp1 inp_gsPos">
+                                <label>&nbsp;,&nbsp;&nbsp;&nbsp;</label>
+                                <label>y =&nbsp;</label>
+                                <input type="number" id="inp_gsPos3_rotated_y" class="inp1 inp_gsPos">
+                                <label>&nbsp;&#41;</label>
+                            </div>
+                            <div class="gsFieldCol3">
+                                <p id="unitTxt_pos3_rotated" class="unitText gsUnitText">m</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="hr1">
+                        
+                </div>
+            </div>
+
         </div>        
         <div class="rightContent">
             <canvas id="canvas1"></canvas>
@@ -253,26 +713,42 @@
             </div>
             <div class="resultContentDiv">
                 <div class="txtLineDiv">
+                    <a class="txt1">To hit the goal at x =&nbsp;</a>
+                    <a id="outTxt_x_goal" class="outTxt1">XXXX</a>
+                    <a class="txt1">&nbsp;m, y =&nbsp;</a>
+                    <a id="outTxt_y_goal" class="outTxt1">XXXX</a>
+                    <a class="txt1">&nbsp;m and z =&nbsp;</a>
+                    <a id="outTxt_z_goal" class="outTxt1">XXXX</a>
+                    <a class="txt1">&nbsp;m </a>
+                </div>
+                <div class="txtLineDiv">
                     <a class="txt1">Using parameters θ =&nbsp;</a>
                     <a id="outTxt_theta" class="outTxt1">XXXX</a>
-                    <a class="txt1">&nbsp;deg and r =&nbsp;</a>
+                    <a class="txt1">&nbsp;deg, r =&nbsp;</a>
                     <a id="outTxt_r" class="outTxt1">XXXX</a>
+                    <a class="txt1">&nbsp;m and z_robot =&nbsp;</a>
+                    <a id="outTxt_z_robot" class="outTxt1">XXXX</a>
                     <a class="txt1">&nbsp;m</a>
                 </div>
                 <div class="txtLineDiv">
-                    <a class="txt1">To hit the goal at y =&nbsp;</a>
-                    <a id="outTxt_y_f" class="outTxt1">XXXX</a>
+                    <a class="txt1">Compensated to θ =&nbsp;</a>
+                    <a id="outTxt_cmpsted_theta" class="outTxt1">XXXX</a>
+                    <a class="txt1">&nbsp;deg, r =&nbsp;</a>
+                    <a id="outTxt_cmpsted_r" class="outTxt1">XXXX</a>
+                    <a class="txt1">&nbsp;m and z_robot =&nbsp;</a>
+                    <a id="outTxt_cmpsted_z_robot" class="outTxt1">XXXX</a>
                     <a class="txt1">&nbsp;m</a>
                 </div>
 
                 <hr width="100%" color="#4A726B">
+                
                 <div class="txtLineDiv">
                     <a class="txt1">Y-intercept at goal :&nbsp;</a>
                     <a id="outTxt_y_intercept" class="outTxt1">XXXX</a>
                     <a class="txt1">&nbsp;m</a>
                 </div>                
                 <div class="txtLineDiv">
-                    <a class="txt1">Distance of missing :&nbsp;</a>
+                    <a class="txt1">Missing distance :&nbsp;</a>
                     <a id="outTxt_error_y" class="outTxt1">XXXX</a>
                     <a class="txt1">&nbsp;m</a>
                     <a class="txt1">&nbsp;=&nbsp;</a>
@@ -303,6 +779,11 @@
     <script src="scripts/ParaInpHandler.js"></script>
     <script src="scripts/PanelClpsHandler.js"></script>
     <script src="scripts/OutTextHandler.js"></script>
+
+    <script src="scripts/GsEngine.js"></script>
+    <script src="scripts/GsPosState.js"></script>
+    <script src="scripts/GoalSimStates.js"></script>
+    <script src="scripts/GsPosHandler.js"></script>
 
     <script src="scripts/index.js"></script>
 </body>

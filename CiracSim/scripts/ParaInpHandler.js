@@ -53,17 +53,50 @@ class ParaInpHandler {
         this.h_c_handler = new ParaInpHandler('inp_h_c', 'reset_h_c',
                         StatePara.state_h_c, DefaultPara.h_c, 0.01);
 
+        this.tableHeight_handler = new ParaInpHandler('inp_tableHeight', 'reset_tableHeight',
+                        StatePara.state_tableHeight, DefaultPara.tableHeight, 0.01);
+
+        this.triangleSide_handler = new ParaInpHandler('inp_triangleSide', 'reset_triangleSide',
+                        StatePara.state_triangleSide, DefaultPara.triangleSide, 0.01);
+
+        this.triangleHeight_handler = new ParaInpHandler('inp_triangleHeight', 'reset_triangleHeight',
+                        StatePara.state_triangleHeight, DefaultPara.triangleHeight, 0.01);
+
+        this.goalDiameter = new ParaInpHandler('inp_goalDiameter', 'reset_goalDiameter',
+                        StatePara.state_goalDiameter, DefaultPara.goalDiameter, 0.01);
+
+        this.ballDiameter = new ParaInpHandler('inp_ballDiameter', 'reset_ballDiameter',
+                        StatePara.state_ballDiameter, DefaultPara.ballDiameter, 0.005);
+
+        this.basketZOffset_handler = new ParaInpHandler('inp_basketZOffset', 'reset_basketZOffset',
+                        StatePara.state_basketZOffset, DefaultPara.basketZOffset, 0.01);
+
         this.theta_handler = new ParaInpHandler('inp_theta', 'reset_theta',
                         StatePara.state_theta, DefaultPara.theta, 0.1);
 
         this.r_handler = new ParaInpHandler('inp_r', 'reset_r',
                         StatePara.state_r, DefaultPara.r, 0.005);
 
-        this.x_f_handler = new ParaInpHandler('inp_x_f', 'reset_x_f',
-                        StatePara.state_x_f, DefaultPara.x_f, 0.01);
+        this.z_robot_handler = new ParaInpHandler('inp_z_robot', 'reset_z_robot',
+                        StatePara.state_z_robot, DefaultPara.z_robot, 0.01);
 
-        this.y_f_handler = new ParaInpHandler('inp_y_f', 'reset_y_f',
-                        StatePara.state_y_f, DefaultPara.y_f, 0.005);
+        this.x_goal_handler = new ParaInpHandler('inp_x_goal', 'reset_x_goal',
+                        StatePara.state_x_goal, DefaultPara.x_goal, 0.01);
+
+        this.y_goal_handler = new ParaInpHandler('inp_y_goal', 'reset_y_goal',
+                        StatePara.state_y_goal, DefaultPara.y_goal, 0.005);
+
+        this.z_goal_handler = new ParaInpHandler('inp_z_goal', 'reset_z_goal',
+                        StatePara.state_z_goal, DefaultPara.z_goal, 0.01);
+
+        this.cmpst_theta_handler = new ParaInpHandler('inp_cmpst_theta', 'reset_cmpst_theta',
+                        StatePara.state_cmpst_theta, DefaultPara.cmpst_theta, 0.1);
+
+        this.cmpst_r_handler = new ParaInpHandler('inp_cmpst_r', 'reset_cmpst_r',
+                        StatePara.state_cmpst_r, DefaultPara.cmpst_r, 0.001);
+
+        this.cmpst_z_robot_handler = new ParaInpHandler('inp_cmpst_z_robot', 'reset_cmpst_z_robot',
+                        StatePara.state_cmpst_z_robot, DefaultPara.cmpst_z_robot, 0.01);
 
         // handle solve button
         document.getElementById('solveBtn').addEventListener('click', () => {

@@ -17,12 +17,18 @@ let trajectory = new Trajectory(canvas1, coor1);
 ParaInpHandler.buildHandlers();
 PanelClpsHandler.buildHandlers();
 OutTextHandler.buildHandlers();
+GsPosHandler.buildHandlers();
 
 // for fun
 //forFun();
-function forFun() {
+function forFun(omega = null) {
+    if (omega==null) {
+        omega = StatePara.omega;
+    }
+    let fps = 24;
+    let intervalTime = 1000 / fps;
     setInterval(() => {
-        StatePara.theta += 2;
-    }, 1000 / 20);
+        StatePara.theta += omega * 180/Math.PI * intervalTime / 1000;
+    }, intervalTime);
 }
 

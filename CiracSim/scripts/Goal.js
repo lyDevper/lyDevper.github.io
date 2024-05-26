@@ -7,8 +7,8 @@ class Goal extends Sprite {
     }
 
     drawGoal() {
-        let x_f = StatePara.x_f;
-        let y_f = StatePara.y_f;
+        let x_goal = StatePara.x_goal;
+        let y_goal = StatePara.y_goal;
         let goalDiameter = StatePara.goalDiameter;
 
         let boundLineLength = 0.05; // m
@@ -22,23 +22,23 @@ class Goal extends Sprite {
         this.ctx.lineWidth = this.lineWidth;
 
         // draw vertical line goal
-        p1 = this.coor.xyToCanvasPoint(x_f, y_f + goalDiameter / 2);
-        p2 = this.coor.xyToCanvasPoint(x_f, y_f - goalDiameter / 2);
+        p1 = this.coor.xyToCanvasPoint(x_goal, y_goal + goalDiameter / 2);
+        p2 = this.coor.xyToCanvasPoint(x_goal, y_goal - goalDiameter / 2);
         this.ctx.beginPath();
         this.ctx.moveTo(p1.x, p1.y);
         this.ctx.lineTo(p2.x, p2.y);
         this.ctx.stroke();
 
         // draw bound line
-        p1 = this.coor.xyToCanvasPoint(x_f - boundLineLength / 2, y_f + goalDiameter / 2);
-        p2 = this.coor.xyToCanvasPoint(x_f + boundLineLength / 2, y_f + goalDiameter / 2);
+        p1 = this.coor.xyToCanvasPoint(x_goal - boundLineLength / 2, y_goal + goalDiameter / 2);
+        p2 = this.coor.xyToCanvasPoint(x_goal + boundLineLength / 2, y_goal + goalDiameter / 2);
         this.ctx.beginPath();
         this.ctx.moveTo(p1.x, p1.y);
         this.ctx.lineTo(p2.x, p2.y);
         this.ctx.stroke();
 
-        p1 = this.coor.xyToCanvasPoint(x_f - boundLineLength / 2, y_f - goalDiameter / 2);
-        p2 = this.coor.xyToCanvasPoint(x_f + boundLineLength / 2, y_f - goalDiameter / 2);
+        p1 = this.coor.xyToCanvasPoint(x_goal - boundLineLength / 2, y_goal - goalDiameter / 2);
+        p2 = this.coor.xyToCanvasPoint(x_goal + boundLineLength / 2, y_goal - goalDiameter / 2);
         this.ctx.beginPath();
         this.ctx.moveTo(p1.x, p1.y);
         this.ctx.lineTo(p2.x, p2.y);
@@ -46,8 +46,8 @@ class Goal extends Sprite {
 
         /*
         // draw center line
-        p1 = this.coor.xyToCanvasPoint(x_f - centerLineLength / 2, y_f);
-        p2 = this.coor.xyToCanvasPoint(x_f + centerLineLength / 2, y_f);
+        p1 = this.coor.xyToCanvasPoint(x_goal - centerLineLength / 2, y_goal);
+        p2 = this.coor.xyToCanvasPoint(x_goal + centerLineLength / 2, y_goal);
         this.ctx.beginPath();
         this.ctx.moveTo(p1.x, p1.y);
         this.ctx.lineTo(p2.x, p2.y);
@@ -56,15 +56,15 @@ class Goal extends Sprite {
 
         // draw cross at center
         this.ctx.lineWidth = 2;
-        p1 = this.coor.xyToCanvasPoint(x_f + crossSize/2, y_f + crossSize/2);
-        p2 = this.coor.xyToCanvasPoint(x_f - crossSize/2, y_f - crossSize/2);
+        p1 = this.coor.xyToCanvasPoint(x_goal + crossSize/2, y_goal + crossSize/2);
+        p2 = this.coor.xyToCanvasPoint(x_goal - crossSize/2, y_goal - crossSize/2);
         this.ctx.beginPath();
         this.ctx.moveTo(p1.x, p1.y);
         this.ctx.lineTo(p2.x, p2.y);
         this.ctx.stroke();
 
-        p1 = this.coor.xyToCanvasPoint(x_f - crossSize/2, y_f + crossSize/2);
-        p2 = this.coor.xyToCanvasPoint(x_f + crossSize/2, y_f - crossSize/2);
+        p1 = this.coor.xyToCanvasPoint(x_goal - crossSize/2, y_goal + crossSize/2);
+        p2 = this.coor.xyToCanvasPoint(x_goal + crossSize/2, y_goal - crossSize/2);
         this.ctx.beginPath();
         this.ctx.moveTo(p1.x, p1.y);
         this.ctx.lineTo(p2.x, p2.y);

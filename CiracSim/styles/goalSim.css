@@ -1,0 +1,108 @@
+#canvas2 {
+    width: 24vw;
+    height: 24vw;
+    object-fit: contain;
+}
+
+.gsPosDiv {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+
+    padding: 0;
+    margin-bottom: 4px;
+    font-size: 12px;
+}
+
+.gsPosHeadDiv {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.gsPosHeadCol1 {
+    width: 28%;
+    padding-left: 30px;
+}
+.gsPosHeadCol1 > a {
+    font-weight: bold;
+}
+
+.gsPosHeadCol2 {
+    width: 62%;
+}
+
+.gsPosHeadCol3 {
+    width: 10%;
+}
+
+.gsPosHeadCol3 > button {
+    right: 0;
+}
+
+.usePosBtn {
+    height: 22px;
+    width: 64px;
+    background: #265976;
+    border: 1px solid white;
+    border-radius: 2px;
+    color: white;
+
+    font-size: 12px;
+    font-family: "Noto Sans Thai", "Roboto";
+    
+    cursor: pointer;
+    transition-duration: 0.08s;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+.gsFieldDiv {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-left: 60px;
+    padding-right: 18px;
+    margin-bottom: 4px;
+    font-size: 12px;
+}
+
+.gsFieldDiv>div {
+    display: flex;
+}
+
+.gsFieldCol1 { /* label */
+    width: 22%;
+}
+.gsFieldCol2 { /* pos z, y input */
+    width: 64%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.gsFieldCol3 { /* unit */
+    width: 12%;
+    padding-left: 12px;
+}
+
+.inp_gsPos {
+    width: 33%;
+    height: 18px;
+    font-size: 12px;
+}
+
+.hr1 {
+    border: solid #506272 1px;
+    width: 88%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}

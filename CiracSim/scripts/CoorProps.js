@@ -53,20 +53,24 @@ class CoorProps {
         return this.actualToCanvasPoint(new Point(x, y));
     }
 
+    canvasXyToActual(x, y) {
+        return this.canvasToActualPoint(new Point(x,y));
+    }
+
     // for canvas1 to display simulation content
     static buildInstance1(canvas) {
         let coor1 = new CoorProps(canvas);
         coor1.updateCanvasSize = function() {
-            this.canvas.width = 0.72 * window.innerWidth;
+            this.canvas.width = 0.68 * window.innerWidth;
             this.canvas.height = window.innerHeight;
             
             this.canvasWidth = this.canvas.width;
             this.canvasHeight = this.canvas.height;
 
-            this.pixPerMeter = this.canvasWidth / 4; // px/m
+            this.pixPerMeter = this.canvasWidth / 4.5; // px/m
 
-            this.originX = this.canvasWidth / 5; // px
-            this.originY = 2 * this.canvasHeight / 3; // px
+            this.originX = this.canvasWidth * 0.22; // px
+            this.originY = 2 * this.canvasHeight * 0.33; // px
         }.bind(coor1);
         coor1.updateCanvasSize();
         return coor1;
