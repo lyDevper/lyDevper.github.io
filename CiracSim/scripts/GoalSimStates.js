@@ -3,6 +3,7 @@ class DefaultGsPos {
     static pos1 = new Point(0, 0.070, StatePara.triangleSide/2 - 0.120);
     static pos2 = new Point(0, 0.070, StatePara.triangleSide/2 + 0.075);
     static pos3 = new Point(0, 0.210, StatePara.triangleSide/2 + 0.045);
+    
 }
 
 class GoalSimStates {
