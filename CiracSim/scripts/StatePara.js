@@ -6,9 +6,9 @@ class DefaultPara {
     static h_c = 0.36825; // m
 
     // forward parameters
-    static theta = 64 // deg
+    static theta = 70 // deg
     static r = 0.29 // m
-    static z_robot = 0.84; // m // z of the robot
+    static z_robot = 0.40 + 0.55/2; // m // z of the robot
 
     // inverse parameters
     static x_goal = 2.20; // m
@@ -26,7 +26,7 @@ class DefaultPara {
     static triangleHeight = this.triangleSide/2 * Math.sqrt(3) // m 0.4763
     static goalDiameter = 0.137; // m
     static ballDiameter = 0.040; // m
-    static basketZOffset = 0.8; // m // z-position of the basket in the field // to be measured
+    static basketZOffset = 0.4; // m // z-position of the basket in the field // to be measured
 
     static g = 9.783; // m/s^2 at Bangkok
 

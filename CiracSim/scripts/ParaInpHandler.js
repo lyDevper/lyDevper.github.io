@@ -108,6 +108,7 @@ class ParaInpHandler {
                 let r_solved = MathEngine.solveForR();
                 StatePara.state_r.setValue(r_solved);
             }
+            StatePara.z_robot = StatePara.z_goal + StatePara.basketZOffset;
         });
         
         // handle theta, r selection radio button

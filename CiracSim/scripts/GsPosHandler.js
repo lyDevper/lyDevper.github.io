@@ -110,5 +110,15 @@ class GsPosHandler {
         // handle rotate angle
         this.gsRotateAng_Handler = new ParaInpHandler('inp_gsRotateAng', 'reset_gsRotateAng', 
             GoalSimStates.rotateAng_state, 0, 120);
+
+        // handle rotate buttons
+        q('rotateLeftBtn').addEventListener('click', () => {
+            GoalSimStates.rotateAng -= 120;
+        });
+
+        q('rotateRightBtn').addEventListener('click', () => {
+            GoalSimStates.rotateAng += 120;
+        });
+
     }
 }

@@ -9,8 +9,6 @@ class CoorProps {
         this.originY = 0; // px
 
         this.updateCanvasSize();
-
-        addEventListener('resize', this.updateCanvasSize.bind(this));
     }    
 
     updateCanvasSize() {
@@ -73,6 +71,36 @@ class CoorProps {
             this.originY = 2 * this.canvasHeight * 0.33; // px
         }.bind(coor1);
         coor1.updateCanvasSize();
+        addEventListener('resize', coor1.updateCanvasSize.bind(coor1));
         return coor1;
+    }
+    
+    // for canvas2 to Goal Simulator
+    static buildInstance2(canvas) {
+        let coor2 = new CoorProps(canvas);
+        coor2.updateCanvasSize = function() {
+            this.canvas.width = 0.18 * window.innerWidth;
+            this.canvas.height = this.canvas.width
+            
+            this.canvasWidth = this.canvas.width;
+            this.canvasHeight = this.canvas.height;
+
+            let triangleSide = StatePara.triangleSide;
+            let triangleHeight = StatePara.triangleHeight;
+            // calculate based on triangle size
+            this.pixPerMeter = this.canvasWidth / (1.1 * triangleSide); // px/m
+            // make triangle at center, oruigin at the bottom left
+            this.originX = (this.canvasWidth / 2) - this.meterToPix(triangleSide/2); // px
+            this.originY = 0.7*(this.canvasHeight - this.meterToPix(triangleHeight))/2 + this.meterToPix(triangleHeight); // px
+            console.log(this.originX, this.originY);
+            console.log(this.canvasWidth, this.canvasHeight);
+        }.bind(coor2);
+        coor2.updateCanvasSize();
+
+        addEventListener('resize', coor2.updateCanvasSize.bind(coor2));
+        StatePara.state_triangleSide.addReactFunc(() => {
+            coor2.updateCanvasSize();
+        });
+        return coor2;
     }
  }

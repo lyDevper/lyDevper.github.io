@@ -1,6 +1,6 @@
 #canvas2 {
-    width: 24vw;
-    height: 24vw;
+    width: 18vw;
+    height: 18vw;
     object-fit: contain;
 }
 
@@ -105,4 +105,32 @@
     width: 88%;
     margin-top: 8px;
     margin-bottom: 8px;
+}
+
+.rotateBtn {
+    height: 24px;
+    width: 28px;
+    padding: 0;
+    background: #35734A;
+    border: 1px solid white;
+    border-radius: 2px;
+    color: white;
+
+    font-size: 13px;
+    font-family: "Noto Sans Thai", "Roboto";
+    
+    cursor: pointer;
+    transition-duration: 0.08s;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#rotateLeftBtn {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+#rotateRightBtn {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
