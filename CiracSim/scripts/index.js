@@ -42,3 +42,11 @@ function forFun(omega = null) {
     }, intervalTime);
 }
 
+
+function forFun2() {
+    let fps = 24;
+    let intervalTime = 1000 / fps;
+    setInterval(() => {
+        GoalSimStates.rotateAng += 2;
+    }, intervalTime);
+}
