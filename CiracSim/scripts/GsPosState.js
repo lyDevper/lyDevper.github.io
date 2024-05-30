@@ -9,7 +9,7 @@ class GsPosState {
 
         // bind originalPos effect to rotatedPos
         this.originalPos_state.addReactFunc((pos) => {
-            console.log('original', pos);
+            //console.log('original', pos);
             let rotatedPos = GsEngine.rotateGsPos(pos, rotateAng_state.getValue());
             if (!rotatedPos.equals(this.rotatedPos_state.getValue())) { //prevent circular call
                 this.rotatedPos_state.setValue(rotatedPos);
@@ -18,7 +18,7 @@ class GsPosState {
 
         // bind rotatedPos effect to originalPos
         this.rotatedPos_state.addReactFunc((pos) => {
-            console.log('rotated', pos);
+            //console.log('rotated', pos);
             let originalPos = GsEngine.rotateGsPos(pos, -rotateAng_state.getValue());
             if (!originalPos.equals(this.originalPos_state.getValue())) { //prevent circular call
                 this.originalPos_state.setValue(originalPos);

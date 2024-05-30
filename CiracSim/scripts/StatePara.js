@@ -1,12 +1,12 @@
 class DefaultPara {
     // robot parameters
-    static omega = 2 * Math.PI * 4; // rad/s
+    static omega = 2 * Math.PI * (280/60); // rad/s
     static rpm = DefaultPara.omega / (2 * Math.PI) * 60; // rpm
     static rps = DefaultPara.omega / (2 * Math.PI); // rps
-    static h_c = 0.36825; // m
+    static h_c = 0.4683; // m // M3 value form old 0.36825
 
     // forward parameters
-    static theta = 70 // deg
+    static theta = 75 // deg
     static r = 0.29 // m
     static z_robot = 0.40 + 0.55/2; // m // z of the robot
 

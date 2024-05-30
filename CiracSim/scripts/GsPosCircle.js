@@ -6,6 +6,7 @@ class GsPosCircle extends Sprite {
         this.center = new Point();
         
         this.circleColor = '#9EA8B1';
+        this.strokeColor = '#BBCEDF';
         this.NumbTextColor = '#ffffff';
         
     }
@@ -19,10 +20,13 @@ class GsPosCircle extends Sprite {
         let center = this.center;
         let radius = this.coor.meterToPix(StatePara.goalDiameter / 2);
         
-        this.ctx.fillStyle = this.circleColor;
+        //this.ctx.fillStyle = this.circleColor;
+        this.ctx.strokeStyle = this.strokeColor;
+        this.ctx.lineWidth = 1.4;
         this.ctx.beginPath();
         this.ctx.arc(center.x, center.y, radius, 0, 2 * Math.PI);
-        this.ctx.fill();
+        //this.ctx.fill();
+        this.ctx.stroke();
     }
     
     drawNumbText() {

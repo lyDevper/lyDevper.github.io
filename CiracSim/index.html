@@ -92,7 +92,7 @@
 
                     <div class="fieldDiv">
                         <div class="fieldCol1">
-                            <label for="inp_h_c">h_c : </label>
+                            <label for="inp_h_c">h<sub> c</sub> : </label>
                         </div>
                         <div class="fieldCol2">
                             <input type="number" id="inp_h_c" class="inp1">
@@ -297,7 +297,7 @@
 
                     <div class="fieldDiv">
                         <div class="fieldCol1">
-                            <label for="inp_z_robot">z_robot : </label>
+                            <label for="inp_z_robot">z<sub> robot</sub> : </label>
                         </div>
                         <div class="fieldCol2">
                             <input type="number" id="inp_z_robot" class="inp1">
@@ -407,7 +407,7 @@
 
                     <div class="fieldDiv">
                         <div class="fieldCol1">
-                            <label for="inp_x_goal">x_goal : </label>
+                            <label for="inp_x_goal">x<sub> goal</sub> : </label>
                         </div>
                         <div class="fieldCol2">
                             <input type="number" id="inp_x_goal" class="inp1">
@@ -426,7 +426,7 @@
 
                     <div class="fieldDiv">
                         <div class="fieldCol1">
-                            <label for="inp_y_goal">y_goal : </label>
+                            <label for="inp_y_goal">y<sub> goal</sub> : </label>
                         </div>
                         <div class="fieldCol2">
                             <input type="number" id="inp_y_goal" class="inp1">
@@ -445,7 +445,7 @@
 
                     <div class="fieldDiv">
                         <div class="fieldCol1">
-                            <label for="inp_z_goal">z_goal : </label>
+                            <label for="inp_z_goal">z<sub> goal</sub> : </label>
                         </div>
                         <div class="fieldCol2">
                             <input type="number" id="inp_z_goal" class="inp1">
@@ -711,7 +711,7 @@
 
         <div class="resultBoxDiv">
             <div class="resultHeadDiv">
-                <h2 class="header1">Results</h2>
+                <h2 class="header1 highlightTxt">Results</h2>
             </div>
             <div class="resultContentDiv">
                 <div class="txtLineDiv">
@@ -732,7 +732,7 @@
                     <a id="outTxt_z_robot" class="outTxt1">XXXX</a>
                     <a class="txt1">&nbsp;m</a>
                 </div>
-                <div class="txtLineDiv">
+                <div class="txtLineDiv highlight">
                     <a class="txt1">Compensated to θ =&nbsp;</a>
                     <a id="outTxt_cmpsted_theta" class="outTxt1">XXXX</a>
                     <a class="txt1">&nbsp;deg, r =&nbsp;</a>
@@ -789,6 +789,7 @@
 
     <script src="scripts/GsTriangle.js"></script>
     <script src="scripts/GsPosCircle.js"></script>
+    <script src="scripts/GsActiveCircle.js"></script>
     <script src="scripts/GsBall.js"></script>
 
     <script src="scripts/index.js"></script>

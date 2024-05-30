@@ -68,7 +68,7 @@ class CoorProps {
             this.pixPerMeter = this.canvasWidth / 4.5; // px/m
 
             this.originX = this.canvasWidth * 0.22; // px
-            this.originY = 2 * this.canvasHeight * 0.33; // px
+            this.originY = this.canvasHeight * 0.62; // px
         }.bind(coor1);
         coor1.updateCanvasSize();
         addEventListener('resize', coor1.updateCanvasSize.bind(coor1));
