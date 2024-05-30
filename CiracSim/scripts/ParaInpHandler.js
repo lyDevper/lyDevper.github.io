@@ -43,6 +43,18 @@ class ParaInpHandler {
         this.input.value = value.toFixed(this.decPlace);
     }
 
+    static solveForAnswer() {
+        if(StatePara.thetaRadioChecked) {
+            let theta_solved = MathEngine.solveForTheta();
+            StatePara.state_theta.setValue(theta_solved);
+        }
+        else if(StatePara.rRadioChecked) {
+            let r_solved = MathEngine.solveForR();
+            StatePara.state_r.setValue(r_solved);
+        }
+        StatePara.z_robot = StatePara.z_goal + StatePara.basketZOffset;
+    }
+
     static buildHandlers() {
         // instantiate each handler as a static property
         this.rpm_handler = new ParaInpHandler('inp_rpm', 'reset_rpm', 
@@ -104,15 +116,7 @@ class ParaInpHandler {
 
         // handle solve button
         document.getElementById('solveBtn').addEventListener('click', () => {
-            if(StatePara.thetaRadioChecked) {
-                let theta_solved = MathEngine.solveForTheta();
-                StatePara.state_theta.setValue(theta_solved);
-            }
-            else if(StatePara.rRadioChecked) {
-                let r_solved = MathEngine.solveForR();
-                StatePara.state_r.setValue(r_solved);
-            }
-            StatePara.z_robot = StatePara.z_goal + StatePara.basketZOffset;
+            ParaInpHandler.solveForAnswer();
         });
         
         // handle theta, r selection radio button

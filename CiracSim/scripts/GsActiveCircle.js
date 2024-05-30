@@ -26,7 +26,23 @@ class GsActiveCircle extends Sprite {
         this.ctx.stroke();
     }
 
+    drawMark() {
+        // draw a plus mark at the center of the circle
+        let center = this.center;
+        let markSize = 8;
+
+        this.ctx.strokeStyle = this.strokeColor;
+        this.ctx.lineWidth = 1.5;
+        this.ctx.beginPath();
+        this.ctx.moveTo(center.x - markSize, center.y);
+        this.ctx.lineTo(center.x + markSize, center.y);
+        this.ctx.moveTo(center.x, center.y - markSize);
+        this.ctx.lineTo(center.x, center.y + markSize);
+        this.ctx.stroke();
+    }
+
     render() {
         this.drawCircle();
+        this.drawMark();
     }
 }

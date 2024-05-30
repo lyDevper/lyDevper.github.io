@@ -2,6 +2,8 @@
     width: 18vw;
     height: 18vw;
     object-fit: contain;
+
+    cursor: pointer;
 }
 
 .gsPosDiv {

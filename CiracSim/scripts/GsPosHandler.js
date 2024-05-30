@@ -43,6 +43,10 @@ class GsPosHandler {
         this.useBtn.addEventListener('click', () => {
             this.useValue();
         });
+        this.useBtn.addEventListener('dblclick', () => {
+            this.useValue();
+            ParaInpHandler.solveForAnswer();
+        });
 
         // reset button: reset to default position
         this.resetBtn.addEventListener('click', () => {

@@ -32,6 +32,7 @@ ParaInpHandler.buildHandlers();
 PanelClpsHandler.buildHandlers();
 OutTextHandler.buildHandlers();
 GsPosHandler.buildHandlers();
+let gsMouseHandler = new GsMouseHandler(canvas2, coor2);
 
 // for fun
 //forFun();
