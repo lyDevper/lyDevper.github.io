@@ -8,7 +8,7 @@ class DefaultPara {
     // forward parameters
     static theta = 75 // deg
     static r = 0.29 // m
-    static z_robot = 0.40 + 0.55/2; // m // z of the robot
+    static z_robot = 0; // m // z of the robot
 
     // inverse parameters
     static x_goal = 2.20; // m
@@ -16,9 +16,9 @@ class DefaultPara {
     static z_goal = 0.240; // m // z of the ball from triangle origin
 
     // Error compensations
-    static cmpst_theta = 0; // deg
+    static cmpst_theta = -16; // deg
     static cmpst_r = 0; // m
-    static cmpst_z_robot = 0; // m // compensate the rotating link from robot center z=0
+    static cmpst_z_robot = -0.07; // m // compensate the rotating link from robot center z=0
 
     // fixed parameters
     static tableHeight = 0.7550; // m
@@ -26,7 +26,7 @@ class DefaultPara {
     static triangleHeight = this.triangleSide/2 * Math.sqrt(3) // m 0.4763
     static goalDiameter = 0.137; // m
     static ballDiameter = 0.040; // m
-    static basketZOffset = 0.4; // m // z-position of the basket in the field // to be measured
+    static basketZOffset = -this.triangleSide / 2; // m // z-position of the basket in the field // to be measured
 
     static g = 9.783; // m/s^2 at Bangkok
 
