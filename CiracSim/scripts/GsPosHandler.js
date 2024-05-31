@@ -30,6 +30,12 @@ class GsPosHandler {
             this.updateRotatedPos_state();
         });
 
+        // numStep for input
+        this.original_z_inp.step = 0.001;
+        this.original_y_inp.step = 0.001;
+        this.rotated_z_inp.step = 0.001;
+        this.rotated_y_inp.step = 0.001;
+
         // bind reaction to gsPosState
         this.gsPosState.originalPos_state.addReactFunc(() => {
             this.updateOriginalPos_inp();
