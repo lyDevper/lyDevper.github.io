@@ -39,9 +39,9 @@
     </div>
   </header>
 
-  <main class="max-w-7xl w-full mx-auto p-4 sm:p-6 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-8">
+  <main class="max-w-7xl w-full mx-auto p-4 sm:p-6 md:p-8 flex-grow grid grid-cols-1 md:grid-cols-12 gap-5 leading-relaxed">
     <!-- Monitor Section -->
-    <div class="lg:col-span-7 flex flex-col gap-6">
+    <div class="md:col-span-8 flex flex-col gap-5">
       
       <!-- Instant Decibel Readout Card -->
       <div id="telemetryCard" class="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/40 p-8 flex flex-col items-center justify-center text-center transition-all duration-300">
@@ -88,7 +88,7 @@
     </div>
 
     <!-- Configuration Control Section -->
-    <div class="lg:col-span-5 flex flex-col gap-6">
+    <div class="md:col-span-4 flex flex-col gap-5">
       
       <!-- Primary Action Console -->
       <div class="rounded-3xl border border-slate-800 bg-slate-950/80 p-6 flex flex-col gap-5">
@@ -228,7 +228,7 @@
         <ul class="list-disc list-inside space-y-1 bg-slate-900/20 p-2.5 rounded-xl">
           <li>Activate the app using the button above and grant mic permissions.</li>
           <li>Set a loudness threshold (e.g., 65 dB).</li>
-          <li>If ambient noise spikes above the line for more than 0.5s, a synthetic <span class="text-teal-400">"shhhhh!"</span> triggers.</li>
+          <li>If ambient noise spikes above the line for more than 0.5s, a synthetic <span class="text-teal-400">"shhhhh! shush shush shush!"</span> sequence triggers.</li>
           <li>App enters a 5-second cooldown block to quieten.</li>
         </ul>
       </div>
@@ -287,7 +287,7 @@
     const sliderDisplay = document.getElementById('sliderDisplay');
     const thresholdSlider = document.getElementById('thresholdSlider');
     const muteBtn = document.getElementById('muteBtn');
-    const mimeLabel = document.getElementById('muteLabel');
+    const muteLabel = document.getElementById('muteLabel');
     const simBtn = document.getElementById('simBtn');
     const autoCalibrateBtn = document.getElementById('autoCalibrateBtn');
     const presetsBox = document.getElementById('presetsBox');
@@ -350,56 +350,69 @@
 
     runChart();
 
-    // Trigger synthetic noise
+    // Trigger synthetic noise (Chained Alert Sequence of Long Shuu! followed by Shush Shush Shush!)
     function triggerSyntheticShush() {
       if (!audioCtx) return;
       const ctx = audioCtx;
-      const dur = 1.5;
-      const amount = ctx.sampleRate * dur;
-      const b = ctx.createBuffer(1, amount, ctx.sampleRate);
-      const output = b.getChannelData(0);
-      for (let i = 0; i < amount; i++) {
-        output[i] = Math.random() * 2 - 1;
+
+      function playNoisePulse(delaySeconds, durSeconds, peakVal, triggerSpeechOnEnd) {
+        const now = ctx.currentTime + delaySeconds;
+        const amount = ctx.sampleRate * durSeconds;
+        const b = ctx.createBuffer(1, amount, ctx.sampleRate);
+        const output = b.getChannelData(0);
+        for (let i = 0; i < amount; i++) {
+          output[i] = Math.random() * 2 - 1;
+        }
+
+        const pulseSource = ctx.createBufferSource();
+        pulseSource.buffer = b;
+
+        const bp = ctx.createBiquadFilter();
+        bp.type = "bandpass";
+        bp.frequency.value = 3400; // soft vocal frequency resonance
+        bp.Q.value = 1.3;
+
+        const lp = ctx.createBiquadFilter();
+        lp.type = "lowpass";
+        lp.frequency.value = 8000;
+
+        const g = ctx.createGain();
+        g.gain.setValueAtTime(0, now);
+        g.gain.linearRampToValueAtTime(peakVal, now + Math.min(0.1, durSeconds * 0.2));
+        g.gain.setValueAtTime(peakVal, now + durSeconds * 0.4);
+        g.gain.exponentialRampToValueAtTime(0.001, now + durSeconds);
+
+        pulseSource.connect(bp);
+        bp.connect(lp);
+        lp.connect(g);
+        g.connect(ctx.destination);
+
+        if (triggerSpeechOnEnd) {
+          pulseSource.onended = () => {
+            const valueBox = document.getElementById('alarmSpeechBox');
+            const speechTxt = valueBox ? valueBox.value : "";
+            if (speechTxt && speechTxt.trim() !== "") {
+              if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(speechTxt);
+                utterance.rate = 0.95;
+                window.speechSynthesis.speak(utterance);
+              }
+            }
+          };
+        }
+
+        pulseSource.start(now);
       }
 
-      const whiteNoise = ctx.createBufferSource();
-      whiteNoise.buffer = b;
-
-      const bp = ctx.createBiquadFilter();
-      bp.type = "bandpass";
-      bp.frequency.value = 3400; // soft voice frequency
-      bp.Q.value = 1.3;
-
-      const lp = ctx.createBiquadFilter();
-      lp.type = "lowpass";
-      lp.frequency.value = 8000;
-
-      const g = ctx.createGain();
-      const t = ctx.currentTime;
-      g.gain.setValueAtTime(0, t);
-      g.gain.linearRampToValueAtTime(0.7, t + 0.15);
-      g.gain.setValueAtTime(0.7, t + 0.4);
-      g.gain.exponentialRampToValueAtTime(0.001, t + dur);
-
-      whiteNoise.connect(bp);
-      bp.connect(lp);
-      lp.connect(g);
-      g.connect(ctx.destination);
-
-      whiteNoise.onended = () => {
-        const valueBox = document.getElementById('alarmSpeechBox');
-        const speechTxt = valueBox ? valueBox.value : "";
-        if (speechTxt && speechTxt.trim() !== "") {
-          if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
-            const utterance = new SpeechSynthesisUtterance(speechTxt);
-            utterance.rate = 0.95;
-            window.speechSynthesis.speak(utterance);
-          }
-        }
-      };
-
-      whiteNoise.start();
+      // Chain the audio pulses:
+      // 1. Initial long "Shuu!" (1.6 seconds)
+      playNoisePulse(0, 1.6, 0.75, false);
+      
+      // 2. Three subsequent assertive but gentle "shush! shush! shush!" pulses (0.25 seconds each)
+      playNoisePulse(1.8, 0.25, 0.70, false);
+      playNoisePulse(2.15, 0.25, 0.70, false);
+      playNoisePulse(2.50, 0.25, 0.70, true);
     }
 
     // Cooldown coordinator
@@ -684,14 +697,18 @@
       isMuted = !isMuted;
       if (isMuted) {
         muteBtn.className = "py-2.5 px-4 rounded-xl border border-red-500/30 bg-red-500/10 hover:bg-red-500/20 text-xs font-semibold text-red-400 flex items-center justify-center gap-2 cursor-pointer transition-all";
-        mimeLabel.textContent = "Unmute Alarm";
-        mug = document.getElementById('muteIcon');
-        mug.innerHTML = '<path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
+        muteLabel.textContent = "Unmute Alarm";
+        const mug = document.getElementById('muteIcon');
+        if (mug) {
+          mug.innerHTML = '<path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
+        }
       } else {
         muteBtn.className = "py-2.5 px-4 rounded-xl border border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-xs font-semibold text-slate-300 flex items-center justify-center gap-2 cursor-pointer transition-all";
-        mimeLabel.textContent = "Mute Sound";
-        mug = document.getElementById('muteIcon');
-        mug.innerHTML = '<path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>';
+        muteLabel.textContent = "Mute Sound";
+        const mug = document.getElementById('muteIcon');
+        if (mug) {
+          mug.innerHTML = '<path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>';
+        }
       }
     };
 
